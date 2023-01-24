@@ -16,7 +16,7 @@ class Login extends Controlador{
            
             if (isset($usuarioSesion)&& !empty($usuarioSesion)) {
                 Sesion::crearSesion($usuarioSesion);
-                redireccionar('/inicio');
+                redireccionar('/');
             }else{
                 redireccionar('/login/index/error_1');
             }
@@ -25,7 +25,7 @@ class Login extends Controlador{
         }else {
 
             if (Sesion::sesionCreada()) {
-                redireccionar('/inicio');
+                redireccionar('/');
             }
 
             $this->datos['error'] = $error;

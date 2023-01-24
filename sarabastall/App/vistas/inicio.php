@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="estilos.css">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
     
     <title>Document</title>
 </head>
@@ -31,13 +31,12 @@
       </form>
       </form>
 
-      <li style="list-style:none;" class="nav-item dropdown">
+      <li style="list-style:none;" class="nav-item dropdown ">
         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> <i class="bi bi-person-circle mr-3 "></i></a>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
-          <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
+          <li><a class="dropdown-item" href="#scrollspyHeading3">Perfil</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
+          <li><a class="dropdown-item" href="#scrollspyHeading5">Cerrar Sesion</a></li>
         </ul>
       </li>
   
@@ -46,21 +45,6 @@
 
 
 
-      <!-- <div style="float:right;width:auto;" class="collapse multi-collapse  pr-2" id="multiCollapseExample2">
-        <div class="card card-body">
-      
-          <a href=""><i class="bi bi-person"></i>Perfil</a>
-          <a href=""><i class="bi bi-box-arrow-in-left"></i>Cerrar sesión</a>
-        </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div> -->
-
-  <!-- 
-    aqui la barra lateral fija
-    <----> 
 
  <div class="row">
   <div style="background-color:rgba(235,236,240,255);" class="col-md-2 col-sm-2 col-lg-2 col-xl-1  vh-100 d-none d-sm-block">
@@ -79,7 +63,8 @@
     </div>
   
   </div>
-  <div style="background-color:rgba(235,236,240,255);" class="container col-xl-11 col-12 col-sm-10 col-xs-6 col-md-10 col-lg-10 ">
+  <div style="background-color:rgba(235,236,240,255);" class="container col-xl-11 col-12 col-sm-10 col-xs-6 col-md-10 col-lg-10 ">-->
+    <?php include 'inc/header_inicio_sesion.php'?>
   <br>
   <div class="container col-12">
   <h5 class="text-center">Quien Somos</h5>
@@ -130,13 +115,13 @@
       </div>
     </div> 
   
-
+<!--
 <div class="offcanvas offcanvas-start" id="demo">
   <div style="background-color:rgba(235,236,240,255);" class="offcanvas-header">
   <img src="img/logo.png" style="width:50%; margin-left:2%;">
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
-<hr></hr>
+
   <div class="offcanvas-body">
   <a href=""> <h3> <img id="icono" class="mb-3" src="img/home.png"> Inicio </h3></a>
 
@@ -152,7 +137,7 @@
 <a href=""><h3> <img id="icono" class="mb-3" src="img/carpeta.png"> Archivos</h3></a>
 <a href=""><h3> <img id="icono" class="mb-3" src="img/certified.png"> Cursos realizados</h3></a>
   </div>
-</div>
+</div>-->
 
 
 

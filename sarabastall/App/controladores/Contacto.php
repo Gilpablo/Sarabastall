@@ -2,7 +2,7 @@
 
 class Contacto extends Controlador{
     public function __construct(){
-      
+        
         $this->contactoModelo=$this->modelo('ContactoModelo');
     }
 
