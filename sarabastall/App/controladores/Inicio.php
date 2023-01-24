@@ -2,7 +2,7 @@
 
 class Inicio extends Controlador{
     public function __construct(){
-       
+        //Sesion::iniciarSesion($this->datos);
         
     }
 
@@ -11,13 +11,13 @@ class Inicio extends Controlador{
             
             switch ($this->datos['usuarioSesion']->idRol) {
                 case 10:
-                    redireccionar('/inicio');
+                    redireccionar('/admin');
                     break;
                 case 20:
-                    redireccionar('/entrenador');
+                    redireccionar('/profesor');
                     break;
                 case 30:
-                    redireccionar('/socio');
+                    redireccionar('/aprendiz');
                     break;
                 case 40:
                     redireccionar('/no_socio');

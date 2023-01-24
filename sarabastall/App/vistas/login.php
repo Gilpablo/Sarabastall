@@ -1,8 +1,5 @@
 <?php require_once RUTA_APP.'/vistas/inc/header.php'?>
 <div class="container">
-
-
-
     
   <div class="row d-flex justify-content-center text-center mx-0 mt-3">
       <div class="col-12">
