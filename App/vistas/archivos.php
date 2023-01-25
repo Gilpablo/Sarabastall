@@ -7,9 +7,18 @@
                             <div class="col-6 d-flex justify-content-start mt-5" >
                                 <h5 class="text-center p-2 ps-0"> Mis Archivos </h5>
                             </div>
+
+
+
+
+
                             <div class="col-1 offset-4 mt-2 d-flex justify-content-end mt-5">
-                                <a href="#" class="text-reset"> <img id="icono" src="img/nuevo-documento.png"> </a>
+                                <a id="newDocument" href="#" class="text-reset"> <img id="icono" src="img/nuevo-documento.png"> </a>
                             </div>
+
+
+
+
                             <div class="col-1 mt-2 d-flex justify-content-end mt-5">
                                 <a href="#" class="text-reset"> <img id="icono" src="img/agregar-carpeta.png"> </a>
                             </div>
@@ -36,5 +45,35 @@
                 </div>
             </div>
         </div>
-</body>
-</html>
+
+
+    <section class="modal">
+        <div class="container modal-container">
+            <div class="modal-header d-flex col-12">
+                <h2 class="modal-title col-10"> Selección de archivos </h2>
+                <button type="button" class="btn btn-outline-secondary border border-secondary modal-close"> X </button>
+            </div>
+
+            <label for="basic-url" class="form-label pb-0 mb-0"> Archivo </label>
+            <div class="input-group mb-3">
+                <input type="file" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+            </div>
+
+            <label for="basic-url" class="form-label pb-0 mb-0"> Guardar como </label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+            </div>
+
+            <label for="basic-url" class="form-label pb-0 mb-0"> Autor </label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+
+                <button type="button" class="btn btn-success"> Subir archivo</button>
+            
+            </div>
+        </div>
+    </section>
+
+
+<?php include 'inc/footer.php'?>
