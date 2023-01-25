@@ -63,7 +63,7 @@
         <a href=""><li title="DINERO" class="list-group pb-3"> <img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/dinero.png"></li></a>
         <?php endif?>
         <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20])):?>
-        <a href=""><li title="ARCHIVOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/carpeta.png"></li></a>
+        <a href="<?php echo RUTA_URL?>/archivos"><li title="ARCHIVOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/carpeta.png"></li></a>
         <?php endif?>
         <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20,30])):?>
         <a href=""> <li title="MIS CURSOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-3 mt-3" src="img/certified.png"></li></a>
