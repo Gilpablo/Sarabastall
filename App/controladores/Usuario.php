@@ -1,9 +1,10 @@
 <?php
 
-class Inicio extends Controlador{
+class Usuario extends Controlador{
     public function __construct(){
         Sesion::iniciarSesion($this->datos);
 
+        $this->usuarioModelo=$this->modelo('UsuarioModelo');
         
         $this->datos["rolesPermitidos"] = [10,20,30];
 
@@ -16,17 +17,11 @@ class Inicio extends Controlador{
     }
 
     public function index(){
-        
-            
-            if ($_SERVER['REQUEST_METHOD']=='POST') {
-            
-                $datos=$_POST;
-                print_r($datos);
-            }else {
-                $this->vista("index", $this ->datos);
-            }
 
-       
+        $this->datos["usuariosActivos"]=$this->usuarioModelo->getUsuariosActivos();
+        
+        $this->vista("/usuarios/index", $this ->datos);
+        
         
     }
 }
