@@ -54,16 +54,16 @@
     
     <div style="width:72px;height:200%;" class="bg-light h-100">
       <ul class="list-group">
-        <a href="administrador.php"><li title="INICIO" class="list-group float-left pb-3 "><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/home.png"></li></a>
+        <a href="<?php echo RUTA_URL?>/"><li title="INICIO" class="list-group float-left pb-3 "><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/home.png"></li></a>
         <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [10])):?>
         <a href=""> <li title="CURSO" class="justify-content-center.  list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/darcurso.png"></li></a>
-        <a href=""><li title="USUARIOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/alumno.png"></li></a>
+        <a href="<?php echo RUTA_URL?>/usuario"><li title="USUARIOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/alumno.png"></li></a>
         <a href="becas.php"><li title="BECAS" class="list-group pb-3"><img id="icono"  class="mx-auto d-block mb-2 mt-3" src="img/beca.png"> </li></a>
         <a href=""><li title="PRESTAMOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/prestamo.png"></li></a>
         <a href=""><li title="DINERO" class="list-group pb-3"> <img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/dinero.png"></li></a>
         <?php endif?>
         <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20])):?>
-        <a href="<?php echo RUTA_URL?>/archivos"><li title="ARCHIVOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/carpeta.png"></li></a>
+        <a href=""><li title="ARCHIVOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/carpeta.png"></li></a>
         <?php endif?>
         <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20,30])):?>
         <a href=""> <li title="MIS CURSOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-3 mt-3" src="img/certified.png"></li></a>
@@ -84,7 +84,7 @@
   
   <a href="administrador.php"> <h3> <img id="icono" class="mb-3" src="img/home.png"> Inicio </h3></a>
   <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [10])):?>
-<a href=""><h3> <img id="icono" class="mb-3" src="img/darcurso.png"> Cursos </h3></a>
+<a href="<?php echo RUTA_URL?>/usuario"><h3> <img id="icono" class="mb-3" src="img/darcurso.png"> Cursos </h3></a>
 
 <a href=""><h3> <img id="icono" class="mb-3" src="img/alumno.png"> Alumnos </h3></a>
 
