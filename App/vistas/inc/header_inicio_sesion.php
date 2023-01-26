@@ -84,9 +84,9 @@
   
   <a href="administrador.php"> <h3> <img id="icono" class="mb-3" src="img/home.png"> Inicio </h3></a>
   <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [10])):?>
-<a href="<?php echo RUTA_URL?>/usuario"><h3> <img id="icono" class="mb-3" src="img/darcurso.png"> Cursos </h3></a>
+<a href=""><h3> <img id="icono" class="mb-3" src="img/darcurso.png"> Cursos </h3></a>
 
-<a href=""><h3> <img id="icono" class="mb-3" src="img/alumno.png"> Alumnos </h3></a>
+<a href="<?php echo RUTA_URL?>/usuario"><h3> <img id="icono" class="mb-3" src="img/alumno.png"> Alumnos </h3></a>
 
 <a href="becas.php"><h3> <img id="icono"  class="mb-3" src="img/beca.png"> Becas</h3></a></a>
 
