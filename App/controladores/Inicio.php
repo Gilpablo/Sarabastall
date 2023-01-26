@@ -4,7 +4,6 @@ class Inicio extends Controlador{
     public function __construct(){
         Sesion::iniciarSesion($this->datos);
 
-        //$this->datos["usuarioSesion"]->id_rol=obtenerRol($this->datos["usuarioSesion"]->roles);
         
         $this->datos["rolesPermitidos"] = [10,20,30];
 
@@ -17,13 +16,17 @@ class Inicio extends Controlador{
     }
 
     public function index(){
-        if (Sesion::sesionCreada($this->datos)){
+        
             
-            redireccionar('/persona');
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+            
+                $datos=$_POST;
+                print_r($datos);
+            }else {
+                $this->vista("index", $this ->datos);
+            }
 
-        } else {
-            redireccionar('/login');
-        }
+       
         
     }
 }
