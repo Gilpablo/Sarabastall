@@ -88,7 +88,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalCerrarAccionLabel">
-          ¿Estas seguro que quieres cerrar la Asesoria?
+          ¿Estas seguro que quieres cerrar el prestamo?
         </h5>
       </div>
       <div class="modal-footer">
