@@ -10,9 +10,9 @@ error_reporting(E_ALL);
 define('RUTA_APP', dirname(dirname(__FILE__)));
 
 //Ruta url, Ejemplo: http://localhost/atletismo
-define('RUTA_URL', 'http://localhost/sarabastal');
+define('RUTA_URL', 'http://localhost/sarabastall');
 
-define('NOMBRE_SITIO', 'Sarabastal');
+define('NOMBRE_SITIO', 'Sarabastall');
 
 //configuracio de la base de datos
 
