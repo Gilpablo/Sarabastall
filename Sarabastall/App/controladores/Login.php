@@ -13,15 +13,11 @@ class Login extends Controlador{
             $this->datos['pass']=trim($_POST['pass']);
             
             $usuarioSesion = $this->loginModelo->loginUsuario($this->datos);
-            
-            
+           
             if (isset($usuarioSesion)&& !empty($usuarioSesion)) {
                 Sesion::crearSesion($usuarioSesion);
-                
-                redireccionar('/inicio');
-
+                redireccionar('/');
             }else{
-                
                 redireccionar('/login/index/error_1');
             }
             
