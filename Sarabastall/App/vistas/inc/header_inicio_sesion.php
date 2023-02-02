@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="<?php echo RUTA_URL?>/css/estilos.css">
     
     <title>Document</title>
 </head>
@@ -21,7 +21,7 @@
       <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <img src="img/logo.png" style="width:50%; margin-left:2%;">
+      <img src="<?php echo RUTA_URL?>/img/logo.png" style="width:50%; margin-left:2%;">
   </div>
 
     <form class="d-flex">
@@ -54,19 +54,21 @@
     
     <div style="width:72px;height:200%;" class="bg-light h-100">
       <ul class="list-group">
-        <a href="<?php echo RUTA_URL?>/"><li title="INICIO" class="list-group float-left pb-3 "><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/home.png"></li></a>
+        <a href="<?php echo RUTA_URL?>/"><li title="INICIO" class="list-group float-left pb-3 "><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/home.png"></li></a>
         <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [10])):?>
-        <a href=""> <li title="CURSO" class="justify-content-center.  list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/darcurso.png"></li></a>
-        <a href="<?php echo RUTA_URL?>/usuario"><li title="USUARIOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/alumno.png"></li></a>
-        <a href="becas.php"><li title="BECAS" class="list-group pb-3"><img id="icono"  class="mx-auto d-block mb-2 mt-3" src="img/beca.png"> </li></a>
-        <a href=""><li title="PRESTAMOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/prestamo.png"></li></a>
-        <a href=""><li title="DINERO" class="list-group pb-3"> <img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/dinero.png"></li></a>
+        <a href=""> <li title="CURSO" class="justify-content-center.  list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/darcurso.png"></li></a>
+        <a href="<?php echo RUTA_URL?>/usuario"><li title="USUARIOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/alumno.png"></li></a>
+        <a href="becas.php"><li title="BECAS" class="list-group pb-3"><img id="icono"  class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/beca.png"> </li></a>
+        <a href=""><li title="PRESTAMOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/prestamo.png"></li></a>
+        <a href=""><li title="MOVIMIENTOS" class="list-group pb-3"> <img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/dinero.png"></li></a>
+        <a href="<?php echo RUTA_URL?>/ciudad"><li title="CIUDADES" class="list-group pb-3"> <img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/edificios.png"></li></a>
+        <a href="<?php echo RUTA_URL?>/centro"><li title="CENTROS_ESCOLARES" class="list-group pb-3"> <img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/colegio.png"></li></a>
         <?php endif?>
         <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20])):?>
-        <a href=""><li title="ARCHIVOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="img/carpeta.png"></li></a>
+        <a href=""><li title="ARCHIVOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/carpeta.png"></li></a>
         <?php endif?>
         <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20,30])):?>
-        <a href=""> <li title="MIS CURSOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-3 mt-3" src="img/certified.png"></li></a>
+        <a href=""> <li title="MIS CURSOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-3 mt-3" src="<?php echo RUTA_URL?>/img/certified.png"></li></a>
         <?php endif ?>
       </ul>
     </div>
@@ -76,29 +78,33 @@
   
   <div class="offcanvas offcanvas-start" id="demo">
   <div style="background-color:rgba(235,236,240,255);" class="offcanvas-header">
-  <img src="img/logo.png" style="width:50%; margin-left:2%;">
+  <img src="<?php echo RUTA_URL?>/img/logo.png" style="width:50%; margin-left:2%;">
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
  
   <div class="offcanvas-body">
   
-  <a href="administrador.php"> <h3> <img id="icono" class="mb-3" src="img/home.png"> Inicio </h3></a>
+  <a href="administrador.php"> <h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/home.png"> Inicio </h3></a>
   <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [10])):?>
-<a href=""><h3> <img id="icono" class="mb-3" src="img/darcurso.png"> Cursos </h3></a>
+<a href=""><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/darcurso.png"> Cursos </h3></a>
 
-<a href="<?php echo RUTA_URL?>/usuario"><h3> <img id="icono" class="mb-3" src="img/alumno.png"> Alumnos </h3></a>
+<a href="<?php echo RUTA_URL?>/usuario"><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/alumno.png"> Usuarios </h3></a>
 
-<a href="becas.php"><h3> <img id="icono"  class="mb-3" src="img/beca.png"> Becas</h3></a></a>
+<a href="becas.php"><h3> <img id="icono"  class="mb-3" src="<?php echo RUTA_URL?>/img/beca.png"> Becas</h3></a></a>
 
-<a href=""><h3> <img id="icono" class="mb-3" src="img/prestamo.png"> Prestamos</h3></a>
+<a href=""><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/prestamo.png"> Prestamos</h3></a>
 
-<a href=""><h3> <img id="icono" class="mb-3" src="img/dinero.png"> Movimientos</h3></a>
+<a href=""><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/dinero.png"> Movimientos</h3></a>
+
+<a href="<?php echo RUTA_URL?>/ciudad"><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/edificios.png"> Ciudades</h3></a>
+
+<a href="<?php echo RUTA_URL?>/centro"><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/colegio.png"> Centros_Escolares</h3></a>
 <?php endif?>
 <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20])):?>
-<a href=""><h3> <img id="icono" class="mb-3" src="img/carpeta.png"> Archivos</h3></a>
+<a href=""><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/carpeta.png"> Archivos</h3></a>
 <?php endif ?>
 <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20,30])):?>
-<a href=""><h3> <img id="icono" class="mb-3" src="img/certified.png"> Mis Cursos</h3></a>
+<a href=""><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/certified.png"> Mis Cursos</h3></a>
 <?php endif ?>
   </div>
 </div>

@@ -12,7 +12,7 @@
   <nav class="navbar navbar-light bg-white">
     <div class="container-fluid mb-3">
       <a class="navbar-brand" href="https://fundacionsarabastall.org/">
-        <img src="imagenes/logo-fundacion-sarabastall.jpg"  class="d-inline-block align-text-top">
+        <img src="<?php echo RUTA_URL?>/imagenes/logo-fundacion-sarabastall.jpg"  class="d-inline-block align-text-top">
       </a>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item">
