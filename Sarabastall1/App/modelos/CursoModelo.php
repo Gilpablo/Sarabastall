@@ -40,18 +40,29 @@
         
             //print_r($datos); exit();
 
+            $this->db->query("INSERT INTO Movimiento(Procedencia, Accion, Fecha_Movimiento, Cantidad, idTipoMovimiento)
+                VALUES(:Nombre, 'Pagar un curso', NOW(), :Importe, 2)"); 
+                $this->db->bind(':Nombre',trim($datos['nombre_cu']));
+                $this->db->bind(':Importe',trim($datos['importe_cu']));
+                $id_movimiento=$this->db->executeLastId();
+                
+
             $this->db->query("INSERT INTO Curso(Nombre, Importe, Fecha_Inicio, Fecha_Fin, idMovimiento, Instructor_idPersona, idEspecialidad)
-                VALUES(:Nombre, :Importe, :Fecha_Inicio, :Fecha_Fin, 1, :Instructor_idPersona, :idEspecialidad)");    
+                VALUES(:Nombre, :Importe, :Fecha_Inicio, :Fecha_Fin, :idMovimiento, :Instructor_idPersona, :idEspecialidad)");
 
             //vinculamos los valores
             $this->db->bind(':Nombre',trim($datos['nombre_cu']));
             $this->db->bind(':Importe',trim($datos['importe_cu']));
             $this->db->bind(':Fecha_Inicio',trim($datos['fechaIni_cu']));
             $this->db->bind(':Fecha_Fin',trim($datos['fechaFin_cu']));
-            //$this->db->bind(':idMovimiento',trim(1));
+            $this->db->bind(':idMovimiento',$id_movimiento);
+            
+            
             $this->db->bind(':Instructor_idPersona',trim($datos['instructor_cu']));
             $this->db->bind(':idEspecialidad',trim($datos['especialidad_cu']));
-
+            
+            
+           
 
             if ($this->db->execute()) {
                 return true;
@@ -73,18 +84,26 @@
         }
 
 
-        public function editCurso($datos,$id_curso){
-
+        public function editCurso($datos,$id_curso,$id_movimiento){
+             
             $this->db->query("UPDATE Curso SET Nombre=:Nombre, Importe=:Importe, Fecha_Inicio=:Fecha_Inicio, Fecha_Fin=:Fecha_Fin, 
-                                idMovimiento=1, Instructor_idPersona=:Instructor_idPersona, idEspecialidad=:idEspecialidad
+                                idMovimiento=:idMovimiento, Instructor_idPersona=:Instructor_idPersona, idEspecialidad=:idEspecialidad
                                     WHERE idCurso=:idCurso");
             $this->db->bind(':Nombre',$datos['nombre_cu']);
             $this->db->bind(':Importe',$datos['importe_cu']);
             $this->db->bind(':Fecha_Inicio',$datos['fechaIni_cu']);
             $this->db->bind(':Fecha_Fin',$datos['fechaFin_cu']);
+            $this->db->bind(':idMovimiento',$id_movimiento);  
             $this->db->bind(':Instructor_idPersona',$datos['instructor_cu']);
             $this->db->bind(':idEspecialidad',$datos['especialidad_cu']);
             $this->db->bind(':idCurso',$id_curso);  
+
+            $this->db->execute();
+
+            $this->db->query("UPDATE Movimiento SET Procedencia=:Titulo, Cantidad=:Importe WHERE idMovimiento=:idMovimiento");
+            $this->db->bind(':Titulo', $datos['nombre_cu']);
+            $this->db->bind(':Importe', $datos['importe_cu']);
+            $this->db->bind(':idMovimiento', $id_movimiento);
             
             if ($this->db->execute()) {
                 return true;
@@ -179,11 +198,6 @@
             return true;
                        
         }
-
-
-        
-
-
-        
+      
 
 } 

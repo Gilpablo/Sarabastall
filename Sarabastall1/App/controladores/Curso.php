@@ -64,9 +64,10 @@ class Curso extends Controlador{
         if ($_SERVER["REQUEST_METHOD"]=="POST") {
             $cursoModificado = $_POST;
 
-            //print_r($cursoModificado);
+            $idMovimiento=$this->datos["datosCurso"]=$this->cursoModelo->verCursos($id_curso)->idMovimiento;
+            
 
-            if ($this->cursoModelo->editCurso($cursoModificado,$id_curso)) {
+            if ($this->cursoModelo->editCurso($cursoModificado,$id_curso,$idMovimiento)) {
                 redireccionar("/curso/ver_curso/$id_curso");
              }else{
                  echo "error";
@@ -116,7 +117,7 @@ class Curso extends Controlador{
                     
                 }else{
 
-                    echo "error46";
+                    echo "error";
                 }
 
             }elseif ($idPersona['boton']=="Eliminar") {
