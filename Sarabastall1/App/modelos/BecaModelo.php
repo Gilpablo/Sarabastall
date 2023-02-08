@@ -27,21 +27,21 @@
             return $this->db->registros();
         }
         public function getBecas2($idBeca){
-            $this->db->query("SELECT * FROM Beca
-                                NATURAL JOIN TipoBeca 
-                                NATURAL JOIN Alumno
-                                NATURAL JOIN Persona
-                                    where idBeca = :idTipoBeca");
-            $this->db->bind(':idTipoBeca', $idBeca);
 
+            $this->db->query("SELECT *
+            FROM Beca,Centro,Persona,Alumno,TipoBeca 
+            WHERE Beca.idBeca=:idBeca and Beca.idCentro=Centro.idCentro and Persona.idPersona=Alumno.idPersona and Beca.idTipoBeca=TipoBeca.idTipoBeca and Beca.Alumno_idPersona=Persona.idPersona");
+            $this->db->bind(':idBeca', $idBeca);
+            
             return $this->db->registro();
-        }
+            
+                    }
 
-        public function addBeca($datos){
+        public function addBeca($datos,$nombre){
 
 
-            //print_r($datos);
-        
+            // print_r($datos);
+            // exit();
 
             $this->db->query("INSERT INTO Beca (Importe, Fecha_Fin, Fecha_Inicio, Observaciones, Alumno_idPersona, idCentro, Fecha_AlumnoBeca, NotaMedia_Alumno, idTipoBeca) 
                                 VALUES (:importe_be, :fechaFin_be, :fechaInicio_be, :obs_be,:alumno_be, :centro_be, NOW(), :notaMedia, :tipo_be)");
@@ -63,7 +63,7 @@
             
 
             $this->db->bind(':idBeca' ,$idBeca);
-            $this->db->bind(':alumno_be' ,"Pagar la beca al alumno ".trim($datos['alumno_be']));
+            $this->db->bind(':alumno_be' ,"Pagar la beca al alumno ".$nombre);
             $this->db->bind(':importe_be' ,trim($datos['importe_be'])); 
 
             if ($this->db->execute()) {

@@ -7,7 +7,7 @@
       <li class="breadcrumb-item active" aria-current="page">Añadir Beca</li>
     </ol>
   </nav>
-    
+   
   <div class="row d-flex justify-content-center text-center mx-0 mt-3">
       <div class="col-12">
       <h1>Añadir Beca</h1>
@@ -23,9 +23,9 @@
     <div class="row">
       <div class="mb-3 col-4">
         <label for="nombre_as" class="form-label">Alumno</label>
-        <select class="form-select" name="alumno_be" aria-label="Default select example">
+        <select class="form-select" name="alumno_be" id="alumno" aria-label="Default select example">
         <?php foreach ($datos['alumno']as $alumno): ?>
-  <option value="<?php echo $alumno->idPersona?>"><?php echo $alumno->Nombre?></option>
+  <option  value="<?php echo $alumno->idPersona?>"><?php echo $alumno->Nombre?></option>
 
   <?php endforeach?>
 </select>  
@@ -53,22 +53,23 @@
         <label for="titulo_as" class="form-label">Tipo de beca</label>
     
         <select class="form-select" id="tipoBeca" name="tipo_be" aria-label="Default select example">
+        <option value="" selected >Seleccione un tipo de beca...</option>
         <?php foreach ($datos['tipoBeca']as $beca): ?>
-  <option value="<?php echo $beca->idTipoBeca?>"><?php echo $beca->NombreBeca?></option>
-  <?php endforeach?>
+          <option id="option<?php echo $beca->idTipoBeca?>" value="<?php echo $beca->idTipoBeca?>"><?php echo $beca->NombreBeca?></option>
+        <?php endforeach?>
 </select>
    
 
       </div>
       <div class="cedula mb-3 col-12  d-none" id="miinput">
-      <label for="madrina_be" class="form-label">Madrina:</label>
-      <select class="form-select" id="madrina_be" name="madrina_be" aria-label="Default select example">
-      <option value="" selected >Seleccione madrina</option>
-      <?php foreach ($datos['madrinas']as $madrina): ?>
-        <option value="<?php echo $madrina->idPersona?>"><?php echo $madrina->Nombre?></option>
-      <?php endforeach?>
-      </select>
-        </div>
+        <label for="madrina_be" class="form-label">Madrina:</label>
+        <select class="form-select" id="madrina_be" name="madrina_be" aria-label="Default select example">
+          <option value="" selected >Seleccione madrina</option>
+          <?php foreach ($datos['madrinas']as $madrina): ?>
+            <option value="<?php echo $madrina->idPersona?>"><?php echo $madrina->Nombre?></option>
+          <?php endforeach?>
+        </select>
+      </div>
       <div class="mb-3 col-12">
         <label for="dni_as" class="form-label">Observaciones</label>
         <textarea class="form-control" name="obs_be"></textarea>
@@ -105,5 +106,28 @@ $('#tipoBeca').on('change',function(){
 		$('#miinput').addClass('d-none');
 	}
 });
+
+const alumno=<?php echo json_encode($datos['alumno'])?>;
+let t=document.getElementById("tipoBeca");
+
+let p=document.getElementById("alumno");
+let a=document.getElementById("option2");
+
+   p.addEventListener("change", function() {
+   
+    let o=alumno.find(elemento=>elemento.idPersona ==p.value);
+   
+    if (o.Genero=="Masculino") {
+
+      a.style="display:none";
+
+    }else{
+
+      a.style="display:block" 
+
+    }
+    
+ });
+ 
   </script>
 <?php require_once RUTA_APP.'/vistas/inc/footer.php'?>

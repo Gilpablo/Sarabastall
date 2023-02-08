@@ -31,20 +31,25 @@ class Beca extends Controlador{
 
         if ($_SERVER["REQUEST_METHOD"]=="POST") {
             $beca = $_POST;
-            // print_r($beca);
+            
             if (!$_POST['alumno_be'] && !$_POST['importe_be'] && !$_POST['centro_be']&& !$_POST['tipo_be']&& !$_POST['obs_be']&& !$_POST['fechaInicio_be']&& !$_POST['fechaFin_be']&& !$_POST['notaMedia']) {
                 redireccionar("/becas/add_becas/1");
             }else if($_POST['madrina_be']){
                 if ($this->becaModelo->addBecaMadrina($beca)) {
-                    redireccionar("/becas");
+                    redireccionar("/beca");
                 }else{
                     echo "error";
                 }
             }else{
-                if ($this->becaModelo->addBeca($beca)) {
-                    redireccionar("/beca");
-                }else{
-                    echo "error";
+                $nombre=$this->datos["alumno"]=$this->becaModelo->getPersonas();
+                foreach ($nombre as $n) {
+                $no=$n->Nombre;
+            
+                    if ($this->becaModelo->addBeca($beca,$no)) {
+                        redireccionar("/beca");
+                    }else{
+                        echo "error";
+                    }
                 }
             }
             
@@ -73,41 +78,17 @@ class Beca extends Controlador{
            
         }
 
-
-
         $this->datos["beca"]=$this->becaModelo->getBecas($idTipoBeca);
         $this->datos["tipoBeca"]=$this->becaModelo->getTipoBeca2($idTipoBeca);
-        //print_r($this->datos["beca"][0]->Madrina_idPersona);
-        $idMadrina=$this->datos["beca"][0]->Madrina_idPersona;
-        $this->datos["madrina"]=$this->becaModelo->getMadrina($idMadrina);
+        
+        if ($this->datos["tipoBeca"]->idTipoBeca==2) {
+            $idMadrina=$this->datos["beca"][0]->Madrina_idPersona;
+            $this->datos["madrina"]=$this->becaModelo->getMadrina($idMadrina);
+        }
+        
 
-          //$this->datos["cant"]=$this->becaModelo->getCantidadBecas();
-        //    echo '<pre>';
-        // print_r($this->datos["beca"]);exit();
-            $this->vista("becas/ver_becas",$this->datos);
+        $this->vista("becas/ver_becas",$this->datos);
             
-
-    
-        // if ($_SERVER["REQUEST_METHOD"]=="POST") {
-        //     // $prestamo=$_POST;
-        //     // $idPrestamo=$idPrestamo;
-        //     // if($this->prestamoModelo->editPrestamo($prestamo,$idPrestamo)){
-              
-        //     //     redireccionar("/prestamos/ver_prestamo/$idPrestamo");
-        //     // } else{
-        //     //     echo "se ha producido un error!!!!";
-        //     // }
-
-        // }else{
-        //     $this->datos["becas"]=$this->becaModelo->getBecas($idTipoBeca);
-        //     // $this->datos["prestamo"]->acciones = $this->prestamoModelo->getAccionesPrestamo($idPrestamo);
-        //     $this->datos["beca"]=$this->becaModelo->getTipoBeca();
-            
-           
-        //     $this->vista("becas/ver_becas",$this->datos);
-
-          
-        // }
     
 }
 
@@ -128,7 +109,7 @@ public function ver_beca($idBeca){
         $idBeca=$idBeca;
         if($this->becaModelo->editBeca($beca,$idBeca)){
           
-            redireccionar("/becas/ver_beca/$idBeca");
+            redireccionar("/beca");
         } else{
             echo "se ha producido un error!!!!";
         }

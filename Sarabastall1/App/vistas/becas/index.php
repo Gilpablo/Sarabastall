@@ -18,16 +18,8 @@
     <a class="btn btn-primary bg-primary"  id="abrirModal"   href="<?php echo RUTA_URL?>/beca/add_becas">Añadir Beca</a>
   </div>
 
-  <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <a class="btn btn-primary bg-primary"  id="abrirModal"   href="<?php echo RUTA_URL?>/prestamos/add_prestamo">Añadir Prestamo</a>
-  </div> -->
-  
-  
-  
   <?php foreach ($datos["becas"] as $tipobeca): ?>
     
-  
-  
     <div class="row bg-light mt-3 border border-dark">
   <div class="col-10 mt-3 mb-3">
     <h5 class="card-title">Becas <?php echo $tipobeca->NombreBeca?></h5> 
