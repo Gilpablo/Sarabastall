@@ -2,9 +2,16 @@
 
 class Curso extends Controlador{
     public function __construct(){
+        Sesion::iniciarSesion($this->datos);
         $this->cursoModelo=$this->modelo("CursoModelo");
         
-        
+        $this->datos["rolesPermitidos"] = [10];
+
+        if (!tienePrivilegios($this->datos['usuarioSesion']->idRol, $this->datos['rolesPermitidos'])) {
+            echo "No tienes privilegios!!!";
+            exit();
+          
+        }
     }
 
     public function index(){
@@ -13,7 +20,7 @@ class Curso extends Controlador{
 
         //print_r($this->datos["cursos"]);
 
-        $this->vista("curso/index", $this->datos);
+        $this->vista("cursos/index", $this->datos);
         
     }
 
@@ -43,7 +50,7 @@ class Curso extends Controlador{
 
             $this->datos["menuActivo"]="";
             $this->datos["error"]=$error;
-            $this->vista("curso/add_curso",$this->datos);
+            $this->vista("cursos/add_curso",$this->datos);
         }  
     }
 
@@ -69,7 +76,7 @@ class Curso extends Controlador{
 
             $this->datos["datosCurso"]=$this->cursoModelo->verCursos($id_curso);
 
-            $this->vista("curso/ver_curso",$this->datos);
+            $this->vista("cursos/ver_curso",$this->datos);
 
         }
 
@@ -130,7 +137,7 @@ class Curso extends Controlador{
             
         }else{
 
-            $this->vista("curso/add_aprendices",$this->datos);
+            $this->vista("cursos/add_aprendices",$this->datos);
 
         }
 
