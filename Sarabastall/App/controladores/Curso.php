@@ -18,7 +18,24 @@ class Curso extends Controlador{
         
         $this->datos["cursos"]=$this->cursoModelo->getCursos();
 
+        $this->datos["instructores"]=$this->cursoModelo->getNombreInstructores();
+
+        $this->datos["especialidad"]=$this->cursoModelo->getEspecialidad();
+
         //print_r($this->datos["cursos"]);
+
+        if ($_SERVER["REQUEST_METHOD"]=="POST") {
+            $cursoModificado = $_POST;
+
+            //print_r($cursoModificado); exit();
+
+            if ($this->cursoModelo->editCurso($cursoModificado)) {
+                redireccionar("/curso");
+             }else{
+                 echo "error";
+             }
+        
+        }
 
         $this->vista("cursos/index", $this->datos);
         

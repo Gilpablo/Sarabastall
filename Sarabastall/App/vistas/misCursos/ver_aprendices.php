@@ -41,16 +41,17 @@
                             <!-- Modal -->
                             <div class="modal fade" id="ver<?php echo $aprendiz->idPersona?>">
 
-                                <div class="modal-dialog modal-dialog-centered modal-xl">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
 
                                     <div class="modal-content">
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title ms-3">Datos aprendiz</h4> 
+                                            <h4 class="modal-title ms-3" style="color: blue;">Datos aprendiz</h4> 
                                             <button type="button" class="btn-close me-4" data-bs-dismiss="modal"></button>
                                         </div>
 
+                                        <!-- Modal Body -->
                                         <div class="modal-body">
 
                                             <div class="row">
@@ -62,35 +63,35 @@
                                                 <div class="col-8 offset-1">
 
                                                     <div class="row">
-
-                                                        <div class="col-12">
-                                                            <label for="nombre_ap">Nombre: </label>
+                                                                                                        
+                                                        <div class="col">
                                                             <input type="text" name="nombre_ap" id="nombre_ap" value="<?php echo $aprendiz->Nombre?>" readonly>
+                                                            <label for="nombre_ap"><strong>Nombre</strong></label>
                                                         </div>
-                    
-                                                        <div class="col-12">
-                                                            <label for="apellidos_ap">Apellidos: </label>
+
+                                                        <div class="col">                                                            
                                                             <input type="text" name="apellidos_ap" id="apellidos_ap" value="<?php echo $aprendiz->Apellido?>" readonly>
+                                                            <label for="apellidos_ap"><strong>Apellidos</strong></label>
                                                         </div>
 
-                                                        <div class="col-12">
-                                                            <label for="genero_ap">Género: </label>
+                                                        <div class="col">                                                            
                                                             <input type="text" name="genero_ap" id="genero_ap" value="<?php echo $aprendiz->Genero?>" readonly>
+                                                            <label for="genero_ap"><strong>Género</strong></label>
                                                         </div>
 
-                                                        <div class="col-12">
-                                                            <label for="telefono_ap">Teléfono: </label>
+                                                        <div class="col">                                                            
                                                             <input type="text" name="telefono_ap" id="telefono_ap" value="<?php echo $aprendiz->Telefono?>" readonly>
+                                                            <label for="telefono_ap"><strong>Teléfono</strong></label>
                                                         </div>
 
-                                                        <div class="col-12">
-                                                            <label for="correo_ap">Correo: </label>
+                                                        <div class="col-12">                                                            
                                                             <input type="text" name="correo_ap" id="correo_ap" value="<?php echo $aprendiz->Correo?>" readonly>
+                                                            <label for="correo_ap"><strong>Correo</strong></label>
                                                         </div>
 
-                                                        <div class="col-12">
-                                                            <label for="fechaNac_ap">Fecha Nacimiento: </label>
+                                                        <div class="col-12">                                                            
                                                             <input type="text" name="fechaNac_ap" id="fechaNac_ap" value="<?php echo $aprendiz->Fecha_Nacimiento?>" readonly>
+                                                            <label for="fechaNac_ap"><strong>Fecha Nacimiento</strong></label>
                                                         </div>
 
                                                     </div>
@@ -101,6 +102,7 @@
                                             
                                         </div>
 
+                                        <!-- Modal Footer -->
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                                         </div>
