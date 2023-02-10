@@ -31,29 +31,16 @@ class Beca extends Controlador{
 
         if ($_SERVER["REQUEST_METHOD"]=="POST") {
             $beca = $_POST;
-            
-            if (!$_POST['alumno_be'] && !$_POST['importe_be'] && !$_POST['centro_be']&& !$_POST['tipo_be']&& !$_POST['obs_be']&& !$_POST['fechaInicio_be']&& !$_POST['fechaFin_be']&& !$_POST['notaMedia']) {
-                redireccionar("/becas/add_becas/1");
-            }else if($_POST['madrina_be']){
-                if ($this->becaModelo->addBecaMadrina($beca)) {
-                    redireccionar("/beca");
-                }else{
-                    echo "error";
-                }
+
+            $nombre=$this->datos["alumno"]=$this->becaModelo->getPersona($beca["alumno_be"]);
+                
+                
+            if ($this->becaModelo->addBeca($beca,$nombre->Nombre)) {
+                redireccionar("/beca");
             }else{
-                $nombre=$this->datos["alumno"]=$this->becaModelo->getPersonas();
-                foreach ($nombre as $n) {
-                $no=$n->Nombre;
-            
-                    if ($this->becaModelo->addBeca($beca,$no)) {
-                        redireccionar("/beca");
-                    }else{
-                        echo "error";
-                    }
-                }
+                echo "error";
             }
-            
-            
+   
         }else{           
             $this->datos["madrinas"]=$this->becaModelo->getMadrinas();
             $this->datos["centros"]=$this->becaModelo->getCentros();
@@ -107,17 +94,17 @@ public function ver_beca($idBeca){
         $idTipoBeca=$_POST["tipoBeca"];
         $beca=$_POST;
         $idBeca=$idBeca;
-        if($this->becaModelo->editBeca($beca,$idBeca)){
-          
-            redireccionar("/beca");
+        $nombre=$this->datos["alumno"]=$this->becaModelo->getPersona($beca["alumno_be"]);
+            
+        if($this->becaModelo->editBeca($beca,$idBeca,$nombre->Nombre)){
+                redireccionar("/beca");
         } else{
-            echo "se ha producido un error!!!!";
+                echo "se ha producido un error!!!!";
         }
+            
 
     }else{
         $this->datos["becas"]=$this->becaModelo->getBecas2($idBeca);
-        // $this->datos["prestamo"]->acciones = $this->prestamoModelo->getAccionesPrestamo($idPrestamo);
-        // $this->datos["beca"]=$this->becaModelo->getTipoBeca();
         $this->datos["centros"]=$this->becaModelo->getCentros();
         $this->vista("becas/ver_beca",$this->datos);
 

@@ -31,10 +31,11 @@
   </form>
     </form>
 
-    <li style="list-style:none;"class="nav-item dropdown">
+    <li style="list-style:none;" class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> <i class="bi bi-person-circle mr-3 "></i></a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#scrollspyHeading3">Perfil</a></li>
+    
+        <li><a class="dropdown-item" href="<?php echo RUTA_URL?>/perfil/editar_perfil/<?php echo $datos['usuarioSesion']->idPersona ?>">Perfil</a></li>
 
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="<?php echo RUTA_URL?>/login/logout">Cerrar Sesion</a></li>
@@ -68,7 +69,7 @@
         <a href=""><li title="ARCHIVOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/carpeta.png"></li></a>
         <?php endif?>
         <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20,30])):?>
-        <a href=""> <li title="MIS CURSOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-3 mt-3" src="<?php echo RUTA_URL?>/img/certified.png"></li></a>
+        <a href="<?php echo RUTA_URL?>/miCurso"> <li title="MIS CURSOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-3 mt-3" src="<?php echo RUTA_URL?>/img/certified.png"></li></a>
         <?php endif ?>
       </ul>
     </div>
@@ -104,7 +105,7 @@
 <a href=""><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/carpeta.png"> Archivos</h3></a>
 <?php endif ?>
 <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20,30])):?>
-<a href=""><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/certified.png"> Mis Cursos</h3></a>
+<a href="<?php echo RUTA_URL?>/miCurso"><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/certified.png"> Mis Cursos</h3></a>
 <?php endif ?>
   </div>
 </div>

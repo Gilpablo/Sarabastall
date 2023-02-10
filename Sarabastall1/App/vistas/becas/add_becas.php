@@ -64,7 +64,7 @@
       <div class="cedula mb-3 col-12  d-none" id="miinput">
         <label for="madrina_be" class="form-label">Madrina:</label>
         <select class="form-select" id="madrina_be" name="madrina_be" aria-label="Default select example">
-          <option value="" selected >Seleccione madrina</option>
+          <option value="" selected >Seleccione madrina...</option>
           <?php foreach ($datos['madrinas']as $madrina): ?>
             <option value="<?php echo $madrina->idPersona?>"><?php echo $madrina->Nombre?></option>
           <?php endforeach?>

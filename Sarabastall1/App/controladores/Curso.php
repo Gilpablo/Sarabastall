@@ -18,7 +18,28 @@ class Curso extends Controlador{
         
         $this->datos["cursos"]=$this->cursoModelo->getCursos();
 
-        //print_r($this->datos["cursos"]);
+        $this->datos["instructores"]=$this->cursoModelo->getNombreInstructores();
+
+        $this->datos["especialidad"]=$this->cursoModelo->getEspecialidad();
+
+        
+
+        if ($_SERVER["REQUEST_METHOD"]=="POST") {
+            $cursoModificado = $_POST;
+           
+            $id_curso=$cursoModificado["id_cu"];
+           
+            $idMovimiento=$this->datos["datosCurso"]=$this->cursoModelo->verCursos($id_curso)->idMovimiento;
+
+            //print_r($cursoModificado); exit();
+
+            if ($this->cursoModelo->editCurso($cursoModificado,$idMovimiento)) {
+                redireccionar("/curso");
+            }else{
+                echo "error";
+            }
+        
+        }
 
         $this->vista("cursos/index", $this->datos);
         
@@ -55,33 +76,33 @@ class Curso extends Controlador{
     }
 
 
-    public function ver_curso($id_curso){
+    // public function ver_curso($id_curso){
 
-        $this->datos["instructores"]=$this->cursoModelo->getNombreInstructores();
+    //     $this->datos["instructores"]=$this->cursoModelo->getNombreInstructores();
 
-        $this->datos["especialidad"]=$this->cursoModelo->getEspecialidad();
+    //     $this->datos["especialidad"]=$this->cursoModelo->getEspecialidad();
        
-        if ($_SERVER["REQUEST_METHOD"]=="POST") {
-            $cursoModificado = $_POST;
+    //     if ($_SERVER["REQUEST_METHOD"]=="POST") {
+    //         $cursoModificado = $_POST;
 
-            $idMovimiento=$this->datos["datosCurso"]=$this->cursoModelo->verCursos($id_curso)->idMovimiento;
+    //         $idMovimiento=$this->datos["datosCurso"]=$this->cursoModelo->verCursos($id_curso)->idMovimiento;
             
 
-            if ($this->cursoModelo->editCurso($cursoModificado,$id_curso,$idMovimiento)) {
-                redireccionar("/curso/ver_curso/$id_curso");
-             }else{
-                 echo "error";
-             }
+    //         if ($this->cursoModelo->editCurso($cursoModificado,$id_curso,$idMovimiento)) {
+    //             redireccionar("/curso/ver_curso/$id_curso");
+    //          }else{
+    //              echo "error";
+    //          }
         
-        }else{
+    //     }else{
 
-            $this->datos["datosCurso"]=$this->cursoModelo->verCursos($id_curso);
+    //         $this->datos["datosCurso"]=$this->cursoModelo->verCursos($id_curso);
 
-            $this->vista("cursos/ver_curso",$this->datos);
+    //         $this->vista("cursos/ver_curso",$this->datos);
 
-        }
+    //     }
 
-    }
+    // }
 
 
 
