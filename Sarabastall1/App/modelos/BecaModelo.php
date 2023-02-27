@@ -190,7 +190,7 @@
 
         function editBeca($datos,$idBeca,$nombre){
 
-            print_r($idBeca);
+            
             //exit();
             $this->db->query("UPDATE Beca SET Importe=:importe, NotaMedia_Alumno=:notamedia, idCentro=:centro, Observaciones=:obs 
             WHERE idBeca=:idBeca");
@@ -232,6 +232,36 @@
         function getGenero(){
 
         }
-     
+        
+        function addPago1($datos){
+            $this->db->query("UPDATE Beca SET primerPago=:importe
+            WHERE idBeca=:idBeca");
+
+
+            $this->db->bind(':importe', $datos['importePago']);
+            $this->db->bind(':idBeca', $datos['idBeca']);
+
+
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        function addPago2($datos){
+            $this->db->query("UPDATE Beca SET segundoPago=:importe
+            WHERE idBeca=:idBeca");
+
+
+            $this->db->bind(':importe', $datos['importePago']);
+            $this->db->bind(':idBeca', $datos['idBeca']);
+
+
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
     }

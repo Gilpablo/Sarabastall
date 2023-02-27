@@ -16,16 +16,16 @@
 
     <div class="container w-75 d-flex" id="accesibilidad">
       <div class="fontsize col-6 d-flex justify-content-start">
-        <ul style="display:flex; list-style:none;">
+        <ul name="lista" style="display:flex; list-style:none;">
          
           <li>
-            <button class="btn btn-outline-ligth" id="disminuir" >A-</button>
+            <button class="btn btn-outline-ligth" name="buttonmenu" onclick="return cambiarTexto('.')" id="disminuir" >A-</button>
           </li>
           <li>
-            <button class="btn btn-outline-ligth" onclick="return cambiarTexto('.')">A</button>
+            <button class="btn btn-outline-ligth" name="buttonmenu" onclick="return textoNormal()">A</button>
           </li>
           <li>
-            <button class="btn btn-outline-ligth" id="aumentar">A+</button>
+            <button class="btn btn-outline-ligth" name="buttonmenu" onclick="return cambiarTexto('+')" id="aumentar">A+</button>
           </li>
         </ul>
       </div>
@@ -33,16 +33,16 @@
         <ul style="display:flex; list-style:none;">
         
           <li>
-            <button class="btn btn-outline-ligth" onclick="return cambiarFondoBlanco()" >R</button>
+            <button class="btn btn-outline-ligth" onclick="return contrasteNormal()" >R</button>
           </li>
           <li>
-            <button class="btn" style="background-color:#000000 ; border: 0; color: #ffff00 ;" onclick="return cambiarFondoNegro()" >A</button>
+            <button class="btn" style="background-color:#000000 ; border: 0; color: #ffff00 ;" onclick="return contrasteNegro()" >A</button>
           </li>
           <li>
-            <button  class="btn" style="background-color:#ffffcc ; border: 0; color: #000000;" onclick="return cambiarFondoVainilla()" >A</button>
+            <button  class="btn" style="background-color:#ffffcc ; border: 0; color: #000000;" onclick="return contrasteVainilla()" >A</button>
           </li>
           <li>
-            <button  class="btn" style="background-color:#99ccff ; border: 0; color: #000000;" onclick="return cambiarFondoCian()">A</button>
+            <button  class="btn" style="background-color:#99ccff ; border: 0; color: #000000;" onclick="return contrasteCielo()">A</button>
           </li>
         </ul>
       </div>
@@ -56,9 +56,9 @@
 <nav class="navbar navbar-light bg-light">
   
   <div class="container-fluid me-4 ">
-    <div class="bg-light">
+    <div name="logo" class="bg-light">
   
-      <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+      <button class="btn btn-light" type="button" name="buttonmenu" data-bs-toggle="offcanvas" data-bs-target="#demo">
         <span class="navbar-toggler-icon"></span>
       </button>
       <img src="<?php echo RUTA_URL?>/img/logo.png" style="width:50%; margin-left:2%;">
@@ -92,13 +92,16 @@
    
   <div style="background-color:rgba(235,236,240,255);" class="col-md-2 col-sm-2 col-lg-2 col-xl-1  vh-100 d-none d-sm-block ">
     
-    <div style="width:72px;height:200%;" class="bg-light h-100">
+    <div name="nav1" style="width:72px;height:200%;" class="bg-light h-100">
       <ul class="list-group">
         <a href="<?php echo RUTA_URL?>/"><li title="INICIO" class="list-group float-left pb-3 "><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/home.png"></li></a>
         <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [10])):?>
         <a href="<?php echo RUTA_URL?>/curso"> <li title="CURSO" class="justify-content-center.  list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/darcurso.png"></li></a>
         <a href="<?php echo RUTA_URL?>/usuario"><li title="USUARIOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/alumno.png"></li></a>
-        <a href="<?php echo RUTA_URL?>/beca"><li title="BECAS" class="list-group pb-3"><img id="icono"  class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/beca.png"> </li></a>
+        <a href="<?php echo RUTA_URL?>/beca"><li t
+        
+        
+        ·tle="BECAS" class="list-group pb-3"><img id="icono"  class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/beca.png"> </li></a>
         <a href="<?php echo RUTA_URL?>/prestamo"><li title="PRESTAMOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/prestamo.png"></li></a>
         <a href="<?php echo RUTA_URL?>/movimiento"><li title="MOVIMIENTOS" class="list-group pb-3"> <img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/dinero.png"></li></a>
         <a href="<?php echo RUTA_URL?>/ciudad"><li title="CIUDADES" class="list-group pb-3"> <img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/edificios.png"></li></a>
@@ -215,4 +218,443 @@
 //     }
 //   }
   
+</script>
+<script>
+
+  //Todos los elementos a los que les vamos a cambiar el fontSize
+const elementsList = document.getElementsByTagName('html');
+
+function getElementFontSize(element){
+  //getComputedStyle nos devuelve las propiedades css de cada párrafo(elemento)
+  const elementFontSize = window.getComputedStyle(element, null).getPropertyValue('font-size');
+  return parseFloat(elementFontSize);  //Devolvemos el total de pixeles
+}
+
+function cambiarTexto(operador) {
+  for(let element of elementsList) {
+     //Obtener el total de pixel de cada párrafo.
+    const currentSize = getElementFontSize(element);
+
+     //Restar o sumar, dependiendo del operador.
+    const newFontSize = (operador === '+' ? (currentSize + 1) : (currentSize - 1)) + 'px';
+     //Aplicarle al parrafo actual el nuevo tamaño.
+    element.style.fontSize = newFontSize
+  }
+
+}
+function textoNormal(){
+  for(let element of elementsList) {
+     //Obtener el total de pixel de cada párrafo.
+    const currentSize = 1;
+
+     //Restar o sumar, dependiendo del operador.
+    const newFontSize =  (currentSize) + 'rem';
+     //Aplicarle al parrafo actual el nuevo tamaño.
+    element.style.fontSize = newFontSize
+  }
+
+}
+
+function contrasteNegro() {
+
+backgroundColor = "#000000";
+color = "#ffff00";
+
+document.body.setAttribute('style', 'background: '+color+' !important;')
+
+
+var uls = document.getElementsByName('lista');
+
+
+for (var i = 0; i<uls.length; i++) {
+    uls[i].setAttribute('style', 'color:'+color+' !important; list-style:none; display:flex;');
+}
+
+var uls = document.getElementsByName('lista');
+
+
+for (var i = 0; i<uls.length; i++) {
+    uls[i].setAttribute('style', 'color:'+color+' !important; list-style:none; display:flex;');
+}
+
+var button = document.getElementsByName('buttonmenu');
+
+
+for (var i = 0; i<button.length; i++) {
+    button[i].setAttribute('style', 'background:'+color+' !important;');
+}
+
+
+var label = document.getElementsByTagName('label');
+
+
+for (var i = 0; i<label.length; i++) {
+    label[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+
+
+
+
+
+var table = document.getElementsByTagName('table');
+
+
+for (var i = 0; i<table.length; i++) {
+    table[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+var p = document.getElementsByTagName('p');
+
+
+for (var i = 0; i<p.length; i++) {
+    p[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+var navs = document.getElementsByTagName('nav');
+
+
+for (var i = 0; i<navs.length; i++) {
+    navs[i].setAttribute('style', 'background:'+backgroundColor+' !important;');
+}
+
+
+var divs1 = document.getElementsByName('nav1');
+
+
+for (var i = 0; i<divs1.length; i++) {
+    divs1[i].setAttribute('style', 'background:'+color+' !important; width:72px;height:200%;');
+}
+
+
+var divs = document.getElementsByTagName('div');
+
+
+for (var i = 0; i<divs.length; i++) {
+    divs[i].setAttribute('style', 'background:'+backgroundColor+' !important;');
+}
+
+
+var h1s = document.getElementsByTagName('h5');
+
+
+for (var i = 0; i<h1s.length; i++) {
+    h1s[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+var h4s = document.getElementsByTagName('h4');
+
+for (var i = 0; i<h4s.length; i++) {
+    h4s[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+var h5s = document.getElementsByTagName('h1');
+
+for (var i = 0; i<h5s.length; i++) {
+    h5s[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+var tds = document.getElementsByTagName('td');
+
+for (var i = 0; i<tds.length; i++) {
+    tds[i].setAttribute('style', 'background:'+backgroundColor+' !important;');
+}
+
+var as = document.getElementsByTagName('a');
+
+for (var i = 0; i<as.length; i++) {
+    as[i].setAttribute('style', 'color:'+color+' !important;');
+ 
+}
+
+var button = document.getElementById('boton');
+button.setAttribute('style', 'background:'+color+' !important; color:'+backgroundColor+' !important;');
+
+var as = document.getElementsByTagName('b');
+
+for (var i = 0; i<as.length; i++) {
+    as[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+var as = document.getElementsByClassName('bg-gradiente');
+
+for (var i = 0; i<as.length; i++) {
+    as[i].setAttribute('style', 'background:'+backgroundColor+' !important;');
+}
+}
+function contrasteNormal() {
+  location.reload()
+}
+
+function contrasteVainilla(){
+  backgroundColor="#ffffcc"
+  color="black"
+
+  document.body.setAttribute('style', 'background: '+backgroundColor+' !important;')
+
+
+var uls = document.getElementsByName('lista');
+
+
+for (var i = 0; i<uls.length; i++) {
+    uls[i].setAttribute('style', 'color:'+color+' !important; list-style:none; display:flex;');
+}
+
+var uls = document.getElementsByName('lista');
+
+
+for (var i = 0; i<uls.length; i++) {
+    uls[i].setAttribute('style', 'color:'+color+' !important; list-style:none; display:flex;');
+}
+
+var button = document.getElementsByName('buttonmenu');
+
+
+for (var i = 0; i<button.length; i++) {
+    button[i].setAttribute('style', 'background:'+backgroundColor+' !important;');
+}
+
+
+var label = document.getElementsByTagName('label');
+
+
+for (var i = 0; i<label.length; i++) {
+    label[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+
+
+
+
+
+var table = document.getElementsByTagName('table');
+
+
+for (var i = 0; i<table.length; i++) {
+    table[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+var p = document.getElementsByTagName('p');
+
+
+for (var i = 0; i<p.length; i++) {
+    p[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+var navs = document.getElementsByTagName('nav');
+
+
+for (var i = 0; i<navs.length; i++) {
+    navs[i].setAttribute('style', 'background:'+backgroundColor+' !important;');
+}
+
+
+var divs1 = document.getElementsByName('nav1');
+
+
+for (var i = 0; i<divs1.length; i++) {
+    divs1[i].setAttribute('style', 'background:'+backgroundColor+' !important; width:72px;height:200%;');
+}
+
+
+var divs = document.getElementsByTagName('div');
+
+
+for (var i = 0; i<divs.length; i++) {
+    divs[i].setAttribute('style', 'background:'+backgroundColor+' !important;');
+}
+
+
+var h1s = document.getElementsByTagName('h5');
+
+
+for (var i = 0; i<h1s.length; i++) {
+    h1s[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+var h4s = document.getElementsByTagName('h4');
+
+for (var i = 0; i<h4s.length; i++) {
+    h4s[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+var h5s = document.getElementsByTagName('h1');
+
+for (var i = 0; i<h5s.length; i++) {
+    h5s[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+var tds = document.getElementsByTagName('td');
+
+for (var i = 0; i<tds.length; i++) {
+    tds[i].setAttribute('style', 'background:'+backgroundColor+' !important;');
+}
+
+var as = document.getElementsByTagName('a');
+
+for (var i = 0; i<as.length; i++) {
+    as[i].setAttribute('style', 'color:'+color+' !important;');
+ 
+}
+
+var button = document.getElementById('boton');
+button.setAttribute('style', 'background:'+color+' !important; color:'+backgroundColor+' !important;');
+
+var as = document.getElementsByTagName('b');
+
+for (var i = 0; i<as.length; i++) {
+    as[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+var as = document.getElementsByClassName('bg-gradiente');
+
+for (var i = 0; i<as.length; i++) {
+    as[i].setAttribute('style', 'background:'+backgroundColor+' !important;');
+}
+
+}
+
+function contrasteCielo(){
+  backgroundColor="#99ccff"
+  color="black"
+
+  document.body.setAttribute('style', 'background: '+backgroundColor+' !important;')
+
+
+var uls = document.getElementsByName('lista');
+
+
+for (var i = 0; i<uls.length; i++) {
+    uls[i].setAttribute('style', 'color:'+color+' !important; list-style:none; display:flex;');
+}
+
+var uls = document.getElementsByName('lista');
+
+
+for (var i = 0; i<uls.length; i++) {
+    uls[i].setAttribute('style', 'color:'+color+' !important; list-style:none; display:flex;');
+}
+
+var button = document.getElementsByName('buttonmenu');
+
+
+for (var i = 0; i<button.length; i++) {
+    button[i].setAttribute('style', 'background:'+backgroundColor+' !important;');
+}
+
+
+var label = document.getElementsByTagName('label');
+
+
+for (var i = 0; i<label.length; i++) {
+    label[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+
+
+
+
+
+var table = document.getElementsByTagName('table');
+
+
+for (var i = 0; i<table.length; i++) {
+    table[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+var p = document.getElementsByTagName('p');
+
+
+for (var i = 0; i<p.length; i++) {
+    p[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+var navs = document.getElementsByTagName('nav');
+
+
+for (var i = 0; i<navs.length; i++) {
+    navs[i].setAttribute('style', 'background:'+backgroundColor+' !important;');
+}
+
+
+var divs1 = document.getElementsByName('nav1');
+
+
+for (var i = 0; i<divs1.length; i++) {
+    divs1[i].setAttribute('style', 'background:'+backgroundColor+' !important; width:72px;height:200%;');
+}
+
+
+var divs = document.getElementsByTagName('div');
+
+
+for (var i = 0; i<divs.length; i++) {
+    divs[i].setAttribute('style', 'background:'+backgroundColor+' !important; ');
+}
+
+
+var h1s = document.getElementsByTagName('h5');
+
+
+for (var i = 0; i<h1s.length; i++) {
+    h1s[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+var h4s = document.getElementsByTagName('h4');
+
+for (var i = 0; i<h4s.length; i++) {
+    h4s[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+var h5s = document.getElementsByTagName('h1');
+
+for (var i = 0; i<h5s.length; i++) {
+    h5s[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+
+var tds = document.getElementsByTagName('td');
+
+for (var i = 0; i<tds.length; i++) {
+    tds[i].setAttribute('style', 'background:'+backgroundColor+' !important;');
+}
+
+var as = document.getElementsByTagName('a');
+
+for (var i = 0; i<as.length; i++) {
+    as[i].setAttribute('style', 'color:'+color+' !important;','width:3px;');
+ 
+}
+
+var button = document.getElementById('boton');
+button.setAttribute('style', 'background:'+color+' !important; color:'+backgroundColor+' !important;');
+
+var as = document.getElementsByTagName('b');
+
+for (var i = 0; i<as.length; i++) {
+    as[i].setAttribute('style', 'color:'+color+' !important;');
+}
+
+var as = document.getElementsByClassName('bg-gradiente');
+
+for (var i = 0; i<as.length; i++) {
+    as[i].setAttribute('style', 'background:'+backgroundColor+' !important;');
+}
+
+}
+
 </script>

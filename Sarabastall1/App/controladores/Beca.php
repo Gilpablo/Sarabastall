@@ -129,7 +129,7 @@ public function ver_beca($idBeca){
            $idBeca=$_POST['idBeca'];
            $idTipoBeca=$_POST['tipoBeca'];
             if($this->becaModelo->delBeca($idBeca)){
-                redireccionar("/beca");
+                redireccionar("/beca/ver_becas/$tipoBeca");
                 
             } else{
                 echo "se ha producido un error!!!!";
@@ -140,4 +140,33 @@ public function ver_beca($idBeca){
     }
 
 
+
+
+public function add_pago($idBeca){
+    $this->datos["rolesPermitidos"] = [10];
+        
+    if (!tienePrivilegios($this->datos['usuarioSesion']->idRol, $this->datos['rolesPermitidos'])) {
+        echo "No tienes privilegios!!!";
+        exit();
+       
+    }
+
+    $datos=$_POST;
+    
+    $tipoBeca=$_POST['tipoBeca'];
+    print_r($datos);
+    if($datos['pago']==1){
+        if($this->becaModelo->addPago1($datos)){
+            redireccionar("/beca/ver_becas/$tipoBeca");
+        }else{
+            echo "error";
+        }
+   }elseif($datos['pago']==2){
+    if($this->becaModelo->addPago2($datos)){
+        redireccionar("/beca/ver_becas/$tipoBeca");
+    }else{
+        echo "error";
+    }
+   }
+}
 }

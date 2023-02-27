@@ -19,7 +19,7 @@
       Se ha de rellenar un campo obligatoriamente!
     </div>
   <?php endif?>
-  <form method="post" name="formulario" onsubmit="return validarFormulario()"> 
+  <form method="post" name="formulario" ENCTYPE="multipart/form-data"  onsubmit="return validarFormulario()"> 
     <div class="row">
       <div class="mb-3 col-6">
         <label for="nombre_us" class="form-label">Nombre</label>
@@ -118,9 +118,11 @@
             myDiv.appendChild(curso_actual);
 
             var imagen = document.createElement('input');
-            imagen.type = "text";
+            imagen.type = "file";
             imagen.name = "imagen";
             imagen.id = "imagen";
+            imagen.accept= ".jpg , .png , .gif";
+                                        
             imagen.className= "form-control mb-3 col-6";
                                         
             var label = document.createElement('label');
@@ -185,7 +187,7 @@
     </div>  
   </form>
 </div>
-
+  
 <script>
   function validarTelefono(telefono) {
     var t = telefono.value;

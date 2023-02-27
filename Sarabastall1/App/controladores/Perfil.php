@@ -22,7 +22,7 @@ class Perfil extends Controlador{
         if ($_SERVER['REQUEST_METHOD']=='POST') {
             
             $datos=$_POST;
-           
+            
             
             if($this->perfilModelo->editPerfil($datos)){
          

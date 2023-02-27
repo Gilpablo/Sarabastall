@@ -2,23 +2,20 @@
     <?php include 'inc/header_inicio_sesion.php'?>
   <br>
   <div class="container col-12">
-  <h5 class="text-center">Quien Somos</h5>
-  <p class="text-center col-md-12 ">
-    Somos una pequeña ONG española, que nace y trabaja en la provincia de Zaragoza, en Caspe y su Comarca, y desarrollamos proyectos de cooperación en Asia.
-
-    Nuestros orígenes se remontan al año 1983, cuando un grupo de jóvenes empezamos a realizar campamentos de verano para niños y niñas de la zona, en el Pirineo aragonés.<br> Pronto se ampliaron los proyectos y, además de los campamentos, comenzamos a realizar actividades medioambientales, solidarias y culturales, convirtiendo a la Asociación Sarabastall en un referente de participación social y voluntariado.
-
-    Fruto de la evolución, y cuando nuestros proyectos de cooperación comienzan a crecer, con el ánimo de mejorar el funcionamiento, Sarabastall se organiza en dos entidades:<br>
-
-    ASOCIACIÓN SARABASTALL. Se encarga de desarrollar actividades culturales, de animación y campamentos de verano.<br>
-
-    FUNDACIÓN SARABASTALL. ONG, inscrita en el Registro de la DGA con nº 319(I) según Orden publicada en el BOA del 16 de agosto de 2011, y cuyo objeto es desarrollar proyectos de cooperación en países en vías de desarrollo, y realizar actividades de captación de fondos.
-  </p>
 
     <h5 class="text-center">Nuestros Proyectos</h5>
-    <div class="row d-flex justify-content-center text-center mx-0 mt-2">
-      
-      <div class="card col-sm-4  col-6 p-2" style="width: 25rem;">
+    <div class="container col-12 col-sm-12 col-md-12 col-lg-8 col-xl-9 ">
+ 
+  <div id="carouselExampleDark" class="carousel carousel-dark slide shadow" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button"  data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+ 
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="4000">
+    <div class="card col-12 pb-sm-3 pd-5">
         <img src="imagenes/Becas-estudios.jpg" class="card-img-top" >
         <div class="card-body">
           <h5 class="card-title">Becas</h5>
@@ -28,18 +25,22 @@
           </p>
         </div>
       </div>
-
-      <div class="card col-sm-4 col-6 p-2" style="width: 25rem;" >
+</div>
+    <div class="carousel-item" data-bs-interval="4000">
+     
+    <div class="card col-12">
         <img src="imagenes/Formacion-maestros.jpg" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Formacion de Profesores y Sanitarios</h5>
           <p class="card-text">
             El proyecto de formación a maestros se plantea tras el estudio y valoración de las escuelas del valle, y del análisis del nivel de formación de sus profesionales. Además, siempre ha estado ligado con la mejora de la sanidad, la higiene y la calidad de vida en la zona. Y no hay mejor camino para conseguirlo que mejorar la salud de todos los habitantes.
           </p>
+          <br>
         </div>
       </div>
-
-      <div class="card col-sm-4  p-2" style="width: 25rem;">
+  </div>
+  <div class="carousel-item " data-bs-interval="4000">
+  <div class="card col-12 " >
         <img src="imagenes/Invernaderos.jpg" class="card-img-top" >
         <div class="card-body">
           <h5 class="card-title">Invernaderos</h5>
@@ -48,6 +49,19 @@
           </p>
         </div>
       </div>
+    </div> 
+  
+   </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
     </div> 
   
 

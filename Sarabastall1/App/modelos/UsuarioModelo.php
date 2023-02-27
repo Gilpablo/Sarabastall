@@ -20,11 +20,12 @@
             return $this->db->registro();
         }
 
-        public function addUsuario($datos){
+        public function addUsuario($datos,$foto){
             
             if ($datos["tipo_us"]=="alumno") {
-                
-            
+               
+          
+  
             $this->db->query("INSERT INTO Persona(Activo, Genero, Nombre, Apellido, Telefono, Correo, Fecha_Nacimiento, idRol)
                  VALUES(1, :genero_us, :nombre_us, :apellido_us, :telefono_us, :email_us, :fechanac_us,40)");
             //vinculamos los valores
@@ -41,7 +42,7 @@
             $this->db->query("INSERT INTO Alumno(Tutor_Legal, Imagen, Curso_Actual, idPersona)
                  VALUES(:tutor_legal, :imagen, :curso_actual, :idPersona)");
                 $this->db->bind(':tutor_legal',trim($datos['tutor_legal']));
-                $this->db->bind(':imagen',trim($datos['imagen']));
+                $this->db->bind(':imagen',$foto);
                 $this->db->bind(':curso_actual',trim($datos['curso_actual']));
                 $this->db->bind(':idPersona',$id_persona);
 
