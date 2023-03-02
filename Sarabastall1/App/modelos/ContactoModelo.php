@@ -1,6 +1,6 @@
 <?php
 
-    class PersonaModelo{
+    class ContactoModelo{
         private $db;
 
         public function __construct(){
