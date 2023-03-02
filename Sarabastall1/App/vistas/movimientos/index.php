@@ -10,35 +10,35 @@
 <div class="container col-12 mt-3">
 
   <div class="row d-flex justify-content-center text-center mx-0 mt-3">
-      <div class="mb-2">
+      <div class="col-12 mb-2">
           <h1>Movimientos</h1>
       </div>
   </div>
-
   <div class="row col-12">
-    <div class="mb-3 d-grid gap-2 d-md-flex justify-content-md-end col-8">
+  <div class="mb-3 d-grid gap-2 d-md-flex justify-content-md-end col-8">
    
       <label for="fil_mov" class="form-label">Filtrar por Tipo de Movimiento</label>
-        <select name="tipomov" id="tipomov" class="form-select">
-          <option value="" selected >Seleccione un tipo de movimiento...</option>
-          <option value="1">Todos</option>
-          <option value="2">Ingresos</option>
-          <option value="3">Gastos</option>
-        </select>
-    </div>         
+      <select name="tipomov" id="tipomov" class="form-select">
+        <option value="" selected disabled >Seleccione un tipo de movimiento...</option>
+        <option value="1">Todos</option>
+        <option value="2">Ingresos</option>
+        <option value="3">Gastos</option>
+      </select>
+  </div>         
+
 
   <div class="col-4">
-  <form class="form-inline">
-   
-   <div class="input-wrapper">
-  <input id="q" class="btn btn border border-secondary" type="search"  placeholder="Buscar" onkeyup="search()">
+    <form class="form-inline">
+    
+      <div class="input-wrapper">
+        <input id="q" class="btn btn border border-secondary" type="search"  placeholder="Buscar" onkeyup="search()">
 
-  <svg xmlns="http://www.w3.org/2000/svg" class="input-icon" viewBox="0 0 20 20" fill="currentColor">
-    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-  </svg>
-</div>
-</form>
-</div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="input-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+        </svg>
+      </div>
+    </form>
+  </div>
 
 </div>
 
@@ -54,7 +54,7 @@
         <th scope="col">TipoMovimiento</th>
       </tr>
     </thead>
-    <tbody id="the_table_body">
+    <tbody id="tbody">
       <?php foreach ($datos["movimientos"] as $movimientos): ?>
         
       <tr>
@@ -84,10 +84,10 @@
   let t = document.getElementById("tipomov");
   t.addEventListener("change", function() {
   console.log(t.value);
-  document.getElementById("the_table_body").innerHTML="";
+  document.getElementById("tbody").innerHTML="";
   if (t.value==1) {
    
-    const tbody = document.getElementById("the_table_body");
+    const tbody = document.getElementById("tbody");
     
  
 
@@ -143,7 +143,7 @@
  // document.getElementById("cuerpo").innerHTML="";
   if (t.value==2) {
     
-    const tbody = document.getElementById("cuerpo");
+    const tbody = document.getElementById("tbody");
     
  
     let o=movimiento.filter(elemento=>elemento.idTipoMovimiento ==1);
@@ -195,7 +195,7 @@
 
   if (t.value==3) {
     
-    const tbody = document.getElementById("cuerpo");
+    const tbody = document.getElementById("tbody");
     
  
     let o=movimiento.filter(elemento=>elemento.idTipoMovimiento ==2);

@@ -67,7 +67,7 @@
             $this->db->bind(':madrina_be' ,trim($datos['madrina_be'])); 
             }
             //exit();
-            /*$idBeca = $this->db->executeLastId();
+            $idBeca = $this->db->executeLastId();
 
             $this->db->query("INSERT INTO Movimiento (Procedencia, Accion, Fecha_Movimiento, Cantidad, idTipoMovimiento, idBeca) 
                                     VALUES (:alumno_be, 'Dar una Beca', NOW(), :importe_be, 2, :idBeca)");
@@ -76,7 +76,7 @@
 
             $this->db->bind(':idBeca' ,$idBeca);
             $this->db->bind(':alumno_be' ,"Pagar la beca al alumno ".$nombre);
-            $this->db->bind(':importe_be' ,trim($datos['importe_be'])); */
+            $this->db->bind(':importe_be' ,trim($datos['importe_be'])); 
 
             if ($this->db->execute()) {
                
@@ -134,9 +134,13 @@
 
         function getPersonas(){
 
-            $this->db->query("SELECT * FROM Persona where idPersona in (Select idPersona from Alumno)
-                              ");
+            $this->db->query("SELECT * FROM Persona where idPersona in (Select idPersona from Alumno)");
              return $this->db->registros();
+        }
+
+        function getFechaFin(){
+            $this->db->query("SELECT Beca.Alumno_idPersona,Beca.Fecha_Fin FROM Beca");
+            return $this->db->registros();
         }
 
         function getPersona($idPersona){
@@ -190,7 +194,7 @@
 
         function editBeca($datos,$idBeca,$nombre){
 
-            
+            print_r($idBeca);
             //exit();
             $this->db->query("UPDATE Beca SET Importe=:importe, NotaMedia_Alumno=:notamedia, idCentro=:centro, Observaciones=:obs 
             WHERE idBeca=:idBeca");
@@ -217,7 +221,8 @@
 
 
         function getMadrinas(){
-            $this->db->query("SELECT * FROM Persona where idPersona in (select idPersona from Madrina)");
+            $this->db->query("SELECT * FROM Persona WHERE idPersona in (
+            SELECT distinct idPersona FROM Madrina where idPersona not in (Select DISTINCT Madrina_idPersona from Beca where Madrina_idPersona is not NULL));");
             
             return $this->db->registros();
         }
@@ -232,7 +237,6 @@
         function getGenero(){
 
         }
-        
         function addPago1($datos){
             $this->db->query("UPDATE Beca SET primerPago=:importe
             WHERE idBeca=:idBeca");
@@ -276,4 +280,6 @@
             
             return $this->db->registros();
         }
+     
+
     }

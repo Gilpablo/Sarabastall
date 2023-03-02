@@ -5,7 +5,7 @@
         <ol class="breadcrumb">
 
             <li class="breadcrumb-item"><a href="<?php echo RUTA_URL?>">Home</a></li>
-            <li class="breadcrumb-item"><a href="<?php echo RUTA_URL?>/miCurso">Cursos</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo RUTA_URL?>/MiCursoProfesor">Cursos</a></li>
             <li class="breadcrumb-item active" aria-current="page">Aprendices</li>
 
         </ol>
@@ -14,7 +14,7 @@
     <div class="container">
 
         <h5 class="text-center">APRENDICES DEL CURSO: <?php echo $this->datos["datosCurso"]->Nombre?></h5>
-
+        
 
         <table class="table">
             
@@ -80,17 +80,17 @@
                                                         </div>
 
                                                         <div class="col">                                                            
-                                                            <input type="text" name="telefono_ap" id="telefono_ap" value="<?php echo $aprendiz->Telefono?>" readonly>
+                                                            <input type="text" name="telefono_ap" id="telefono_ap" value="<?php  echo $aprendiz->Telefono?>" readonly>
                                                             <label for="telefono_ap"><strong>Teléfono</strong></label>
                                                         </div>
 
                                                         <div class="col-12">                                                            
-                                                            <input type="text" name="correo_ap" id="correo_ap" value="<?php echo $aprendiz->Correo?>" readonly>
+                                                            <input type="text" name="correo_ap" id="correo_ap" value="<?php  echo $aprendiz->Correo?>" readonly>
                                                             <label for="correo_ap"><strong>Correo</strong></label>
                                                         </div>
 
                                                         <div class="col-12">                                                            
-                                                            <input type="text" name="fechaNac_ap" id="fechaNac_ap" value="<?php echo $aprendiz->Fecha_Nacimiento?>" readonly>
+                                                            <input type="text" name="fechaNac_ap" id="fechaNac_ap" value="<?php  echo $aprendiz->Fecha_Nacimiento?>" readonly>
                                                             <label for="fechaNac_ap"><strong>Fecha Nacimiento</strong></label>
                                                         </div>
 
@@ -119,6 +119,7 @@
             
         </table>
         
-        
+       
 
     </div>
+

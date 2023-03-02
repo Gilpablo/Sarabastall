@@ -28,7 +28,8 @@
         </tr>
     
       <tbody id="the_table_body">
-        <?php foreach ($datos['becados']as $becado): ?>
+        <?php if (!empty($datos['becados'])) {?>
+            <?php foreach ($datos['becados']as $becado): ?>
           <tr class="bg-light">
           <td><?php echo $becado->Tutor_Legal ?></td>
           <td><?php echo $becado->Nombre?></td>
@@ -41,7 +42,12 @@
         </tr>
   
       <?php endforeach?>
+        <?php } else{ ?>
+            <h1>No hay alumnos becados en esos años</h1>
+        <?php } ?>
+        
       </tbody>
+      
     </table>
 
 

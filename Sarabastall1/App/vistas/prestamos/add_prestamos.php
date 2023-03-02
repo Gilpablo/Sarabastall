@@ -36,6 +36,10 @@
         <input type="text" class="form-control" id="persona_pr" name="persona_pr" >   
       </div>
 
+      <div class="mb-3 col-12">
+        <label for="titulo_as" class="form-label">Fecha Vencimiento</label>
+        <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" >   
+      </div>
 
       <div class="col-8 col-sm-8 col-md-8 col-lg-10 col-xl-10">
         <button type="submit" class=" w-100 btn btn-success btn-lg">Guardar</button>

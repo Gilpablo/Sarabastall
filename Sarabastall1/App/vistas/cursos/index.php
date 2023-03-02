@@ -17,7 +17,7 @@
       <?php foreach ($datos["cursos"] as $curso): ?>
 
           <div class="col-12 p-2">
-          <div class="shadow card">
+          <div class="card">
               <div class="card-body">
                 <h5 class="card-title"><?php echo $curso->Nombre;?></h5>
                 <p class="card-text"></p>

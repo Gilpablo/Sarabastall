@@ -1,6 +1,6 @@
 <?php require_once RUTA_APP.'/vistas/inc/header_inicio_sesion.php';?>
 
-
+<?php// print_r($datos['usuario']); exit()?>
 <div class="container">
 
   <nav aria-label="breadcrumb">
@@ -58,7 +58,7 @@
                     <?php if (!$datos['usuario']->Tutor_Legal=='' || !$datos['usuario']->Curso_Actual=='' ||  !$datos['usuario']->Imagen=='' ):?>
 
                     <div class="mb-3 col-6">
-                        <label for="tutor_legal" class="form-label">Tutor_Legal</label>
+                        <label for="tutor_legal" class="form-label">Padre</label>
                         <input type="text" class="form-control" id="tutor_legal" name="tutor_legal"  value="<?php echo $datos['usuario']->Tutor_Legal?>">   
                     </div>
 

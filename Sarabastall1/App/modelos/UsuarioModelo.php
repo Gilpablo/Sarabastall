@@ -23,9 +23,8 @@
         public function addUsuario($datos,$foto){
             
             if ($datos["tipo_us"]=="alumno") {
-               
-          
-  
+                
+            
             $this->db->query("INSERT INTO Persona(Activo, Genero, Nombre, Apellido, Telefono, Correo, Fecha_Nacimiento, idRol)
                  VALUES(1, :genero_us, :nombre_us, :apellido_us, :telefono_us, :email_us, :fechanac_us,40)");
             //vinculamos los valores
@@ -173,6 +172,9 @@
                 $this->db->bind(':email',$datos['email']);
                 $this->db->bind(':id_persona',$id_persona);  
 
+                $this->db->execute();
+            // print_r($datos);
+            // exit();
                 if ($idRol==40) {
                     
                     $this->db->query("UPDATE Alumno SET Tutor_Legal=:tutor_legal, Imagen=:imagen, Curso_Actual=:curso_actual
@@ -201,5 +203,26 @@
             }else{
                 return false;
             }
+        }
+
+        public function recuperarPass($to, $passCifrada){
+            $this->db->query("UPDATE Persona SET  Clave=sha2(:user_pass,256) WHERE Correo = :user_email");
+            $this->db->bind(':user_email',$to);
+            $this->db->bind(':user_pass',$passCifrada);
+
+            // if ($this->db->execute()) {
+            //     return true;
+            //     print_r("sdsdsds");
+            // }else{
+            //     return false;
+            // }
+             //ejecutamos
+             try {
+                $this->db->execute();
+               
+            } catch (\Throwable $th) {
+                print_r ("Ha ocurrido un error actualizando el usuario. Inténtelo de nuevo más tarde.");
+            }
+
         }
     }    

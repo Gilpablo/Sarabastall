@@ -1,73 +1,72 @@
 body {
-  font-size: 1rem;
-}
-h1 {
-  font-size: 1.5rem;
-}
-li {
-  font-size: 0.9rem;
-}
-.f0 {
-  font-size: 0.8rem;
-}
-.f1 {
-  font-size: 0.9rem;
-}
-.f2 {
-  font-size: 1rem;
-}
-.f3 {
-  font-size: 1.1rem;
-}
-.f4 {
-  font-size: 1.2rem;
-}
-
-#icono{
-    width: 30px;
-}
-a{
-    text-decoration: none;
-    color: black;
-}
-
-li:hover{
-    background-color: rgb(201, 201, 201);
-}
-
-
-.input-wrapper {
-    position: relative;
-    width: 271px;
+    font-size: 1rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  li {
+    font-size: 0.9rem;
+  }
+  .f0 {
+    font-size: 0.8rem;
+  }
+  .f1 {
+    font-size: 0.9rem;
+  }
+  .f2 {
+    font-size: 1rem;
+  }
+  .f3 {
+    font-size: 1.1rem;
+  }
+  .f4 {
+    font-size: 1.2rem;
+  }
+  
+  #icono{
+      width: 30px;
+  }
+  a{
+      text-decoration: none;
+      color: black;
+  }
+  
+  li:hover{
+      background-color: rgb(201, 201, 201);
+  }
+  
+  
+  .input-wrapper {
+      position: relative;
+      width: 271px;
+      
+      
+    }
     
+    .input {
     
-  }
-  
-  .input {
-  
+      color: #000000;
+      padding: 15px 15px 15px 35px;
+      width: 100%;
+      height: 20px;
+      
+    }
     
-    color: #000000;
-    padding: 15px 15px 15px 35px;
-    width: 100%;
-    height: 20px;
+    .input.password {
+      padding: 15px 35px 15px 15px;
+    }
     
-  }
-  
-  .input.password {
-    padding: 15px 35px 15px 15px;
-  }
-  
-  .input-icon {
-    color: #191919;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  .input-icon.password {
-    left: unset;
-    right: 12px;
-  }
+    .input-icon {
+      color: #191919;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    .input-icon.password {
+      left: unset;
+      right: 12px;
+    }

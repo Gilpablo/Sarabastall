@@ -19,7 +19,7 @@
       Se ha de rellenar un campo obligatoriamente!
     </div>
   <?php endif?>
-  <form method="post" name="formulario" ENCTYPE="multipart/form-data"  onsubmit="return validarFormulario()"> 
+  <form method="post" name="formulario" ENCTYPE="multipart/form-data"   onsubmit="return validarFormulario()"> 
     <div class="row">
       <div class="mb-3 col-6">
         <label for="nombre_us" class="form-label">Nombre</label>
@@ -94,7 +94,7 @@
                                         
             var label = document.createElement('label');
             label.className="form-label"                            
-            var txt= document.createTextNode("Tutor_Legal");
+            var txt= document.createTextNode("Padre");
             var br = document.createElement('br');        
             label.appendChild(txt);
             myDiv.appendChild(label);
@@ -122,7 +122,6 @@
             imagen.name = "imagen";
             imagen.id = "imagen";
             imagen.accept= ".jpg , .png , .gif";
-                                        
             imagen.className= "form-control mb-3 col-6";
                                         
             var label = document.createElement('label');
@@ -178,16 +177,16 @@
                     
         </script>
     
-      <div class="col-10">
+      <div class="col-8 col-sm-8 col-md-8 col-lg-10 col-xl-10">
         <button type="submit" class=" w-100 btn btn-success btn-lg">Guardar</button>
       </div>
-      <div class="col-2">
+      <div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
         <a class="w-100 btn btn-danger btn-lg" href="<?php echo RUTA_URL ?>/usuario">Cancelar</a>
       </div>
     </div>  
   </form>
 </div>
-  
+
 <script>
   function validarTelefono(telefono) {
     var t = telefono.value;

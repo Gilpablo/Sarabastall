@@ -46,8 +46,6 @@ class Usuario extends Controlador{
                     chmod('/var/www/html/sarabastal_prueba/Sarabastall1/App/vistas/usuarios/imagenes/'.$foto, 0777);
                 }
             }
-    
-           exit();
             if ($this->usuarioModelo->addUsuario($usuario,$foto)) {
                 redireccionar("/usuario");
             }else{

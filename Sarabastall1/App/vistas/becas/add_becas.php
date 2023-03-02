@@ -24,8 +24,9 @@
       <div class="mb-3 col-4">
         <label for="nombre_as" class="form-label">Alumno</label>
         <select class="form-select" name="alumno_be" id="alumno" aria-label="Default select example">
+        <option value="" disabled selected >Seleccione un alumno...</option>
         <?php foreach ($datos['alumno']as $alumno): ?>
-  <option  value="<?php echo $alumno->idPersona?>"><?php echo $alumno->Nombre?></option>
+  <option id="alum<?php echo $alumno->idPersona?>" value="<?php echo $alumno->idPersona?>"><?php echo $alumno->Nombre?></option>
 
   <?php endforeach?>
 </select>  
@@ -43,6 +44,7 @@
       <div class="mb-3 col-6">
         <label for="titulo_as" class="form-label">Centro</label>
         <select class="form-select" name="centro_be" aria-label="Default select example">
+        <option value="" disabled selected >Seleccione un centro...</option>
         <?php foreach ($datos['centros']as $centro): ?>
   <option value="<?php echo $centro->idCentro?>"><?php echo $centro->NombreCentro?></option>
   
@@ -53,7 +55,7 @@
         <label for="titulo_as" class="form-label">Tipo de beca</label>
     
         <select class="form-select" id="tipoBeca" name="tipo_be" aria-label="Default select example">
-        <option value="" selected >Seleccione un tipo de beca...</option>
+        <option value="" disabled selected >Seleccione un tipo de beca...</option>
         <?php foreach ($datos['tipoBeca']as $beca): ?>
           <option id="option<?php echo $beca->idTipoBeca?>" value="<?php echo $beca->idTipoBeca?>"><?php echo $beca->NombreBeca?></option>
         <?php endforeach?>
@@ -64,7 +66,7 @@
       <div class="cedula mb-3 col-12  d-none" id="miinput">
         <label for="madrina_be" class="form-label">Madrina:</label>
         <select class="form-select" id="madrina_be" name="madrina_be" aria-label="Default select example">
-          <option value="" selected >Seleccione madrina...</option>
+          <option value="" disabled selected >Seleccione madrina...</option>
           <?php foreach ($datos['madrinas']as $madrina): ?>
             <option value="<?php echo $madrina->idPersona?>"><?php echo $madrina->Nombre?></option>
           <?php endforeach?>
@@ -114,7 +116,7 @@ let p=document.getElementById("alumno");
 let a=document.getElementById("option2");
 
    p.addEventListener("change", function() {
-   
+    
     let o=alumno.find(elemento=>elemento.idPersona ==p.value);
    
     if (o.Genero=="Masculino") {
@@ -128,6 +130,45 @@ let a=document.getElementById("option2");
     }
     
  });
- 
+
+var today = new Date();
+var day = today.getDate();
+var month = today.getMonth() + 1;
+var year = today.getFullYear();
+var hoy=`${year}/${month}/${day}`;
+  
+ const fechas=<?php echo json_encode($datos['fechas'])?>;
+var data=[];
+fechas.forEach(e => {
+  data.push(e.Alumno_idPersona);
+});
+
+var data1=[];
+alumno.forEach(e => {
+  data1.push(e.idPersona);
+});
+
+const diferenciaDeArreglos = (arr1, arr2) => {
+	return arr1.filter(elemento => arr2.indexOf(elemento) == -1);
+}
+const ex = diferenciaDeArreglos(data1, data);
+for (let i = 0; i < data.length; i++) {
+  let id =document.getElementById("alum"+data[i]);
+
+fechas.forEach(el => {
+
+    
+if (new Date(el.Fecha_Fin).getTime()>new Date(hoy).getTime()) {
+  id.style="display:none";
+  
+}else{
+  id.style="display:block";
+  
+}
+
+});
+  
+}
+
   </script>
 <?php require_once RUTA_APP.'/vistas/inc/footer.php'?>

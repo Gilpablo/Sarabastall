@@ -29,7 +29,7 @@
       </div>
 
       <div  class="mt-3 col-12 text-center">
-        <a href="">¿Has olvidado tu contraseña?</a>
+        <a href="<?php echo RUTA_URL?>/login/recuperarPass">¿Has olvidado tu contraseña?</a>
       </div>
       
   </form>
