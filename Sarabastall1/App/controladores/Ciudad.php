@@ -18,8 +18,17 @@ class Ciudad extends Controlador{
     public function index(){
        
         $this->datos["ciudadesActivas"]=$this->ciudadModelo->getCiudades();
-
+        
         $this->vista("/ciudades/index", $this ->datos);
+        
+    }
+
+    public function get_ciudades(){
+        
+        $ciudades=$this->ciudadModelo->getCiudades();
+        $datos['ciudades'] = $ciudades;
+        $this->vistaApi($datos);
+        
     }
 
     public function add_ciudad($error=0){

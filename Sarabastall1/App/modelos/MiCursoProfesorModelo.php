@@ -1,6 +1,6 @@
 <?php
 
-    class MiCursoModelo{
+    class MiCursoProfesorModelo{
         private $db;
 
         public function __construct(){
@@ -52,7 +52,7 @@
             
         }
 
-
+      
 
 
     }

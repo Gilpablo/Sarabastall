@@ -29,15 +29,15 @@
                 $this->db->bind(':Importe',trim($datos['importe_pr']));
                 $id_movimiento=$this->db->executeLastId();
 
-            $this->db->query("INSERT INTO Prestamo (Titulo, Importe, idMovimiento, idTipoPrestamo ,Persona, Fecha_PedirPrestamo, id_estado) 
-                        VALUES (:titulo_pr, :importe_pr, :idMovimiento, 1, :persona_pr, NOW(), 2)");
+            $this->db->query("INSERT INTO Prestamo (Titulo, Importe, idMovimiento, idTipoPrestamo ,Persona, Fecha_PedirPrestamo,Fecha_fin, id_estado) 
+                        VALUES (:titulo_pr, :importe_pr, :idMovimiento, 1, :persona_pr, NOW(),:fecha_fin ,2)");
 
 
             $this->db->bind(':titulo_pr' ,trim($datos['titulo_pr']));
             $this->db->bind(':importe_pr' ,trim($datos['importe_pr'])); 
             $this->db->bind(':idMovimiento',$id_movimiento);
             $this->db->bind(':persona_pr' ,trim($datos['persona_pr'])); 
-
+            $this->db->bind(':fecha_fin' ,trim($datos['fecha_fin'])); 
             
 
 
@@ -104,11 +104,13 @@
 
         function editPrestamo($datos,$idPrestamo,$idMovimiento){
             
-            $this->db->query("UPDATE Prestamo SET Titulo=:Titulo, Importe=:Importe WHERE idPrestamo=:idPrestamo");
+            $this->db->query("UPDATE Prestamo SET Titulo=:Titulo, Importe=:Importe, Fecha_fin=:fecha_fin WHERE idPrestamo=:idPrestamo");
 
 
             $this->db->bind(':Titulo', $datos['Titulo']);
             $this->db->bind(':Importe', $datos['Importe']);
+            $this->db->bind(':fecha_fin' ,$datos['Fecha_fin']);
+            
             $this->db->bind(':idPrestamo', $idPrestamo);
             $this->db->execute();
 

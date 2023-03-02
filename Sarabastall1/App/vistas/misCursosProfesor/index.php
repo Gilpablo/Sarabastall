@@ -44,7 +44,7 @@
                       }?></p>
                   </div>
 
-                  <a class="btn btn-primary me-md-3"  href="<?php echo RUTA_URL?>/miCurso/ver_aprendices/<?php echo $curso->idCurso;?>">Ver Alumnos</a>
+                  <a class="btn btn-primary me-md-3"  href="<?php echo RUTA_URL?>/miCursoProfesor/ver_aprendices/<?php echo $curso->idCurso;?>">Ver Alumnos</a>
                   
                 </div>
 

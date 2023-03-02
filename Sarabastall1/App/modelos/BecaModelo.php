@@ -67,7 +67,7 @@
             $this->db->bind(':madrina_be' ,trim($datos['madrina_be'])); 
             }
             //exit();
-            /*$idBeca = $this->db->executeLastId();
+            $idBeca = $this->db->executeLastId();
 
             $this->db->query("INSERT INTO Movimiento (Procedencia, Accion, Fecha_Movimiento, Cantidad, idTipoMovimiento, idBeca) 
                                     VALUES (:alumno_be, 'Dar una Beca', NOW(), :importe_be, 2, :idBeca)");
@@ -76,7 +76,7 @@
 
             $this->db->bind(':idBeca' ,$idBeca);
             $this->db->bind(':alumno_be' ,"Pagar la beca al alumno ".$nombre);
-            $this->db->bind(':importe_be' ,trim($datos['importe_be'])); */
+            $this->db->bind(':importe_be' ,trim($datos['importe_be'])); 
 
             if ($this->db->execute()) {
                
@@ -134,9 +134,13 @@
 
         function getPersonas(){
 
-            $this->db->query("SELECT * FROM Persona where idPersona in (Select idPersona from Alumno)
-                              ");
+            $this->db->query("SELECT * FROM Persona where idPersona in (Select idPersona from Alumno)");
              return $this->db->registros();
+        }
+
+        function getFechaFin(){
+            $this->db->query("SELECT Beca.Alumno_idPersona,Beca.Fecha_Fin FROM Beca");
+            return $this->db->registros();
         }
 
         function getPersona($idPersona){
@@ -217,7 +221,8 @@
 
 
         function getMadrinas(){
-            $this->db->query("SELECT * FROM Persona where idPersona in (select idPersona from Madrina)");
+            $this->db->query("SELECT * FROM Persona WHERE idPersona in (
+            SELECT distinct idPersona FROM Madrina where idPersona not in (Select DISTINCT Madrina_idPersona from Beca where Madrina_idPersona is not NULL));");
             
             return $this->db->registros();
         }
@@ -231,6 +236,49 @@
 
         function getGenero(){
 
+        }
+        function addPago1($datos){
+            $this->db->query("UPDATE Beca SET primerPago=:importe
+            WHERE idBeca=:idBeca");
+
+
+            $this->db->bind(':importe', $datos['importePago']);
+            $this->db->bind(':idBeca', $datos['idBeca']);
+
+
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        function addPago2($datos){
+            $this->db->query("UPDATE Beca SET segundoPago=:importe
+            WHERE idBeca=:idBeca");
+
+
+            $this->db->bind(':importe', $datos['importePago']);
+            $this->db->bind(':idBeca', $datos['idBeca']);
+
+
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        function getBecados($datos1,$datos2){
+         
+          
+            $this->db->query("SELECT Alumno.Tutor_Legal, Persona.Nombre, Persona.Genero, Beca.Fecha_Inicio, Beca.Fecha_Fin, Beca.primerPago, Beca.segundoPago FROM Persona, Beca, Alumno where Persona.idPersona 
+            in (Select idPersona from Alumno) and Persona.idPersona in (Select Alumno_idPersona from Beca) 
+            and Persona.idPersona=Beca.Alumno_idPersona and Persona.idPersona=Alumno.idPersona and Beca.Fecha_Inicio>:fechaini and Beca.Fecha_Inicio<=:fechafin");
+
+            $this->db->bind(':fechaini', $datos1);
+            $this->db->bind(':fechafin', $datos2);
+            
+            return $this->db->registros();
         }
      
 
