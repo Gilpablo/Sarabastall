@@ -264,4 +264,16 @@
             }
         }
 
+        function getBecados($datos1,$datos2){
+         
+          
+            $this->db->query("SELECT Alumno.Tutor_Legal, Persona.Nombre, Persona.Genero, Beca.Fecha_Inicio, Beca.Fecha_Fin, Beca.primerPago, Beca.segundoPago FROM Persona, Beca, Alumno where Persona.idPersona 
+            in (Select idPersona from Alumno) and Persona.idPersona in (Select Alumno_idPersona from Beca) 
+            and Persona.idPersona=Beca.Alumno_idPersona and Persona.idPersona=Alumno.idPersona and Beca.Fecha_Inicio>:fechaini and Beca.Fecha_Inicio<=:fechafin");
+
+            $this->db->bind(':fechaini', $datos1);
+            $this->db->bind(':fechafin', $datos2);
+            
+            return $this->db->registros();
+        }
     }

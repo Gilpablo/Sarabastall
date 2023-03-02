@@ -55,3 +55,5 @@ function buscar(){
  function textoNormal(){
    location.reload()
  }
+
+ 

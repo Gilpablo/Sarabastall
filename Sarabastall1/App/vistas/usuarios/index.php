@@ -128,8 +128,10 @@
       
       datosFil=datos.filter(e=>e.NombreRol.toUpperCase()==filter);
       console.log(datosFil);
-      
     
+   
+      document.getElementById("container").innerHTML=JSON.stringify(datosFil)
+
       
       return false;
 		}	
