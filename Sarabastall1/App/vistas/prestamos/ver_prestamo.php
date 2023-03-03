@@ -49,6 +49,10 @@
                   <label for="dni_as" class="form-label">Importe</label>
                   <input type="number" class="form-control" <?php echo $estadoFormulario?> required pattern="[0-9]+" id="dni_as" name="Importe" value="<?php echo $datos['prestamo']->Importe ?>">   
                 </div>
+                <div class="mb-3 col-12">
+                  <label for="fecha_fin" class="form-label">Fecha Vencimiento</label>
+                  <input type="date" class="form-control" id="fecha_fin" name="Fecha_fin" value="<?php echo $datos['prestamo']->Fecha_fin ?>">   
+                </div>
 
                 <div class="col-7 col-sm-4mb-3">
                   <button type="submit" <?php echo $estadoFormulario?> class=" w-100 btn btn-success btn-lg">Modificar</button>

@@ -30,10 +30,10 @@
         <label for="cantidad" class="form-label">Cantidad</label>
         <input type="text" class="form-control" id="cantidad" name="cantidad" required>   
       </div>
-      <div class="col-10">
+      <div class="col-8 col-sm-8 col-md-8 col-lg-10 col-xl-10">
         <button type="submit" class=" w-100 btn btn-success btn-lg">Guardar</button>
       </div>
-      <div class="col-2">
+      <div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
         <a class="w-100 btn btn-danger btn-lg" href="<?php echo RUTA_URL ?>/ciudad">Cancelar</a>
       </div>
     </div>  

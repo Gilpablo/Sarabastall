@@ -29,8 +29,24 @@ class Usuario extends Controlador{
 
         if ($_SERVER["REQUEST_METHOD"]=="POST") {
             $usuario = $_POST;
+            $foto = $_FILES['imagen']['name'];
+            print_r($foto);
+            $tipo = $_FILES['imagen']['type'];
             
-            if ($this->usuarioModelo->addUsuario($usuario)) {
+            $temp = $_FILES['imagen']['tmp_name'];
+            exit();
+            if (!((strpos($tipo, "gif") || strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "png")))) {
+                echo '<div><b>Error. La extensión o el tamaño de los archivos no es correcta.<br/>
+               - Se permiten archivos .gif, .jpg, .png. y de 200 kb como máximo.</b></div>';
+            } else {
+                //If the image is correct in size and type
+                //Trying to upload to the server
+                if (move_uploaded_file($temp, '/var/www/html/sarabastal_prueba/Sarabastall1/App/vistas/usuarios/imagenes/'.$foto)) {
+                    //Change the permissions of the file to 777 to be able to modify it later
+                    chmod('/var/www/html/sarabastal_prueba/Sarabastall1/App/vistas/usuarios/imagenes/'.$foto, 0777);
+                }
+            }
+            if ($this->usuarioModelo->addUsuario($usuario,$foto)) {
                 redireccionar("/usuario");
             }else{
                 echo "error";

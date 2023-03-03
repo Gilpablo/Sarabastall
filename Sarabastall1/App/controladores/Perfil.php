@@ -22,16 +22,18 @@ class Perfil extends Controlador{
         if ($_SERVER['REQUEST_METHOD']=='POST') {
             
             $datos=$_POST;
-           
-            
-            if($this->perfilModelo->editPerfil($datos)){
+            $this->datos["usuario"]=$this->perfilModelo->getUsuario($idPersona);
+            $clave=$this->datos["usuario"]->Clave;
          
+            if($this->perfilModelo->editPerfil($datos,$clave)){
+                
                 redireccionar("/perfil/editar_perfil/$idPersona");
             } else{
                 echo "se ha producido un error!!!!";
             }
         }else{
             $this->datos["usuario"]=$this->perfilModelo->getUsuario($idPersona);
+            
             $this->vista('perfil/editar_perfil',$this ->datos);
         }
 
@@ -41,15 +43,4 @@ class Perfil extends Controlador{
     
 }
 
-// public function editar(){
-//     if ($_SERVER['REQUEST_METHOD']=='POST') {
-//         $datos=$_POST;
-//         if($this->perfilModelo->editPerfil($datos)){
-          
-//             redireccionar("/perfil/editar_perfil/");
-//         } else{
-//             echo "se ha producido un error!!!!";
-//         }
-//     }
-// }
 }

@@ -9,9 +9,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo RUTA_URL?>/css/estilos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+    <!-- <link rel="stylesheet" href="<?php echo RUTA_URL?>/js/main.js"> -->
     
     <title>Sarabastall</title>
 </head>
+<div  class="navbar w-100 justify-content-center  bg-light  border-bottom border-lg-shadow" id="content" style="display:none;">
+
+    <div class="container w-75 d-flex" id="accesibilidad">
+      <div class="fontsize col-6 d-flex justify-content-start">
+        <ul style="display:flex; list-style:none;">
+         
+          <li>
+            <button class="btn btn-outline-ligth" id="disminuir" >A-</button>
+          </li>
+          <li>
+            <button class="btn btn-outline-ligth" onclick="return cambiarTexto('.')">A</button>
+          </li>
+          <li>
+            <button class="btn btn-outline-ligth" id="aumentar">A+</button>
+          </li>
+        </ul>
+      </div>
+      <div class="fontsize col-6 d-flex justify-content-start">
+        <ul style="display:flex; list-style:none;">
+        
+          <li>
+            <button class="btn btn-outline-ligth" onclick="return cambiarFondoBlanco()" >R</button>
+          </li>
+          <li>
+            <button class="btn" style="background-color:#000000 ; border: 0; color: #ffff00 ;" onclick="return cambiarFondoNegro()" >A</button>
+          </li>
+          <li>
+            <button  class="btn" style="background-color:#ffffcc ; border: 0; color: #000000;" onclick="return cambiarFondoVainilla()" >A</button>
+          </li>
+          <li>
+            <button  class="btn" style="background-color:#99ccff ; border: 0; color: #000000;" onclick="return cambiarFondoCian()">A</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+</div>
 <body style="background-color:rgba(235,236,240,255);">
 <nav class="navbar navbar-light bg-light">
     
@@ -24,31 +62,43 @@
       <img src="<?php echo RUTA_URL?>/img/logo.png" style="width:50%; margin-left:2%;">
   </div>
 
-    <form class="d-flex">
-  <form class="form-inline">
-    <input class="form-control mr-sm-2 rounded-pill w-100  d-none d-md-block " type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-dark my-2 my-sm-0 rounded-pill  d-none d-md-block" type="submit">Search</button>
-  </form>
-    </form>
+  
 
-    <li style="list-style:none;"class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> <i class="bi bi-person-circle mr-3 "></i></a>
+    <li style="list-style:none;" class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> <i class="bi bi-person-circle mr-3 "></i>
+      <label for="" id="usu">
+        <script>
+          const datos=<?php echo json_encode($datos['usuarioSesion'])?>;
+            localStorage.setItem("name", datos.Nombre);
+            if (localStorage.getItem("name")) {
+              let name = localStorage.getItem("name");
+              document.getElementById('usu').innerHTML=name;
+            }
+            //si queremos borrar algo que hayamos guardado en local
+            //localStorage.removeItem("titulo");
+        </script>
+      </label>
+      </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="<?php echo RUTA_URL?>/perfil/editar_perfil/<?php echo $datos['usuarioSesion']->idPersona?>">Perfil</a></li>
+    
+        <li><a class="dropdown-item" href="<?php echo RUTA_URL?>/perfil/editar_perfil/<?php echo $datos['usuarioSesion']->idPersona ?>">Perfil</a></li>
 
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="<?php echo RUTA_URL?>/login/logout">Cerrar Sesion</a></li>
       </ul>
      
     </li>
-   <a><i class="bi bi-universal-access-circle"></i></a>
+    <label class="checkeable">
+    <input type="checkbox" class="form-check-input d-none" id="check" name="check" value="1" onchange="javascript:showContent()">
+    <i class="bi bi-universal-access-circle"></i>
+    </label>
   
     
   </div>
 </nav>  
 
 
- <div class="row">
+ <div class="row g-0">
    
   <div style="background-color:rgba(235,236,240,255);" class="col-md-2 col-sm-2 col-lg-2 col-xl-1  vh-100 d-none d-sm-block ">
     
@@ -68,7 +118,7 @@
         <a href=""><li title="ARCHIVOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/carpeta.png"></li></a>
         <?php endif?>
         <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20,30])):?>
-        <a href=""> <li title="MIS CURSOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-3 mt-3" src="<?php echo RUTA_URL?>/img/certified.png"></li></a>
+        <a href="<?php echo RUTA_URL?>/MiCursoProfesor"> <li title="MIS CURSOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-3 mt-3" src="<?php echo RUTA_URL?>/img/certified.png"></li></a>
         <?php endif ?>
       </ul>
     </div>
@@ -104,7 +154,55 @@
 <a href=""><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/carpeta.png"> Archivos</h3></a>
 <?php endif ?>
 <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20,30])):?>
-<a href=""><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/certified.png"> Mis Cursos</h3></a>
+<a href="<?php echo RUTA_URL?>/MiCursoProfesor"><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/certified.png"> Mis Cursos</h3></a>
 <?php endif ?>
   </div>
 </div>
+<script>
+  function search(){
+			var num_cols, display, input, filter, table_body, tr, td, i, txtValue;
+			num_cols = 5;
+			input = document.getElementById("q");
+			filter = input.value.toUpperCase();
+			table_body = document.getElementById("tbody");
+			tr = table_body.getElementsByTagName("tr");
+
+			for(i=0; i< tr.length; i++){				
+				display = "none";
+				for(j=0; j < num_cols; j++){
+					td = tr[i].getElementsByTagName("td")[j];
+					if(td){
+						txtValue = td.textContent || td.innerText;
+						if(txtValue.toUpperCase().indexOf(filter) > -1){
+							display = "";
+						}
+					}
+				}
+				tr[i].style.display = display;
+			} 
+		}	
+</script>
+
+  <script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("check");
+        if (check.checked) {
+            element.style ="z-index:995";
+            element.style.position = 'fixed';
+            element.style.display = 'flex';
+            element.style = "box-shadow: 0 1rem 3rem rgba(black, 0.175) ";
+
+
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+
+      if (localStorage.clickcount) {
+          localStorage.clickcount = Number(localStorage.clickcount) + 1;
+      } else {
+          localStorage.clickcount = 1;
+      }
+  </script>  

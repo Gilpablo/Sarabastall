@@ -84,7 +84,7 @@
         }
 
 
-        public function editCurso($datos,$id_curso,$id_movimiento){
+        public function editCurso($datos,$id_movimiento){
              
             $this->db->query("UPDATE Curso SET Nombre=:Nombre, Importe=:Importe, Fecha_Inicio=:Fecha_Inicio, Fecha_Fin=:Fecha_Fin, 
                                 idMovimiento=:idMovimiento, Instructor_idPersona=:Instructor_idPersona, idEspecialidad=:idEspecialidad
@@ -96,7 +96,7 @@
             $this->db->bind(':idMovimiento',$id_movimiento);  
             $this->db->bind(':Instructor_idPersona',$datos['instructor_cu']);
             $this->db->bind(':idEspecialidad',$datos['especialidad_cu']);
-            $this->db->bind(':idCurso',$id_curso);  
+            $this->db->bind(':idCurso',$datos['id_cu']);  
 
             $this->db->execute();
 

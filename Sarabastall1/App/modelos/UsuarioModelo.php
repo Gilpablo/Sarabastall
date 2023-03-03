@@ -20,7 +20,7 @@
             return $this->db->registro();
         }
 
-        public function addUsuario($datos){
+        public function addUsuario($datos,$foto){
             
             if ($datos["tipo_us"]=="alumno") {
                 
@@ -41,7 +41,7 @@
             $this->db->query("INSERT INTO Alumno(Tutor_Legal, Imagen, Curso_Actual, idPersona)
                  VALUES(:tutor_legal, :imagen, :curso_actual, :idPersona)");
                 $this->db->bind(':tutor_legal',trim($datos['tutor_legal']));
-                $this->db->bind(':imagen',trim($datos['imagen']));
+                $this->db->bind(':imagen',$foto);
                 $this->db->bind(':curso_actual',trim($datos['curso_actual']));
                 $this->db->bind(':idPersona',$id_persona);
 
@@ -172,6 +172,9 @@
                 $this->db->bind(':email',$datos['email']);
                 $this->db->bind(':id_persona',$id_persona);  
 
+                $this->db->execute();
+            // print_r($datos);
+            // exit();
                 if ($idRol==40) {
                     
                     $this->db->query("UPDATE Alumno SET Tutor_Legal=:tutor_legal, Imagen=:imagen, Curso_Actual=:curso_actual
@@ -200,5 +203,26 @@
             }else{
                 return false;
             }
+        }
+
+        public function recuperarPass($to, $passCifrada){
+            $this->db->query("UPDATE Persona SET  Clave=sha2(:user_pass,256) WHERE Correo = :user_email");
+            $this->db->bind(':user_email',$to);
+            $this->db->bind(':user_pass',$passCifrada);
+
+            // if ($this->db->execute()) {
+            //     return true;
+            //     print_r("sdsdsds");
+            // }else{
+            //     return false;
+            // }
+             //ejecutamos
+             try {
+                $this->db->execute();
+               
+            } catch (\Throwable $th) {
+                print_r ("Ha ocurrido un error actualizando el usuario. Inténtelo de nuevo más tarde.");
+            }
+
         }
     }    

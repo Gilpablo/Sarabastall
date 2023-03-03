@@ -16,4 +16,11 @@
             
             return $this->db->registro();
         }
+
+        public function verificarCorreo($email){
+
+            $this->db->query("SELECT Correo FROM Persona WHERE Correo = :user_email");
+            $this->db->bind(':user_email',$email);
+            return $this->db->registros();
+            }
     }

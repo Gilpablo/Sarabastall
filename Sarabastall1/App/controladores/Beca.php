@@ -31,34 +31,22 @@ class Beca extends Controlador{
 
         if ($_SERVER["REQUEST_METHOD"]=="POST") {
             $beca = $_POST;
-            
-            if (!$_POST['alumno_be'] && !$_POST['importe_be'] && !$_POST['centro_be']&& !$_POST['tipo_be']&& !$_POST['obs_be']&& !$_POST['fechaInicio_be']&& !$_POST['fechaFin_be']&& !$_POST['notaMedia']) {
-                redireccionar("/becas/add_becas/1");
-            }else if($_POST['madrina_be']){
-                if ($this->becaModelo->addBecaMadrina($beca)) {
-                    redireccionar("/beca");
-                }else{
-                    echo "error";
-                }
+
+            $nombre=$this->datos["alumno"]=$this->becaModelo->getPersona($beca["alumno_be"]);
+                
+                
+            if ($this->becaModelo->addBeca($beca,$nombre->Nombre)) {
+                redireccionar("/beca");
             }else{
-                $nombre=$this->datos["alumno"]=$this->becaModelo->getPersonas();
-                foreach ($nombre as $n) {
-                $no=$n->Nombre;
-            
-                    if ($this->becaModelo->addBeca($beca,$no)) {
-                        redireccionar("/beca");
-                    }else{
-                        echo "error";
-                    }
-                }
+                echo "error";
             }
-            
-            
+   
         }else{           
             $this->datos["madrinas"]=$this->becaModelo->getMadrinas();
             $this->datos["centros"]=$this->becaModelo->getCentros();
             $this->datos["tipoBeca"]=$this->becaModelo->getTipoBeca();
             $this->datos["alumno"]=$this->becaModelo->getPersonas();
+            $this->datos["fechas"]=$this->becaModelo->getFechaFin(); 
             $this->datos["menuActivo"]="";
             $this->datos["error"]=$error;
             $this->vista("becas/add_becas",$this->datos);
@@ -82,8 +70,12 @@ class Beca extends Controlador{
         $this->datos["tipoBeca"]=$this->becaModelo->getTipoBeca2($idTipoBeca);
         
         if ($this->datos["tipoBeca"]->idTipoBeca==2) {
-            $idMadrina=$this->datos["beca"][0]->Madrina_idPersona;
+            
+            if (!$this->datos["beca"]=="") {
+                $idMadrina=$this->datos["beca"][0]->Madrina_idPersona;
             $this->datos["madrina"]=$this->becaModelo->getMadrina($idMadrina);
+            }
+            
         }
         
 
@@ -107,17 +99,17 @@ public function ver_beca($idBeca){
         $idTipoBeca=$_POST["tipoBeca"];
         $beca=$_POST;
         $idBeca=$idBeca;
-        if($this->becaModelo->editBeca($beca,$idBeca)){
-          
-            redireccionar("/beca");
+        $nombre=$this->datos["alumno"]=$this->becaModelo->getPersona($beca["alumno_be"]);
+            
+        if($this->becaModelo->editBeca($beca,$idBeca,$nombre->Nombre)){
+                redireccionar("/beca");
         } else{
-            echo "se ha producido un error!!!!";
+                echo "se ha producido un error!!!!";
         }
+            
 
     }else{
         $this->datos["becas"]=$this->becaModelo->getBecas2($idBeca);
-        // $this->datos["prestamo"]->acciones = $this->prestamoModelo->getAccionesPrestamo($idPrestamo);
-        // $this->datos["beca"]=$this->becaModelo->getTipoBeca();
         $this->datos["centros"]=$this->becaModelo->getCentros();
         $this->vista("becas/ver_beca",$this->datos);
 
@@ -142,7 +134,7 @@ public function ver_beca($idBeca){
            $idBeca=$_POST['idBeca'];
            $idTipoBeca=$_POST['tipoBeca'];
             if($this->becaModelo->delBeca($idBeca)){
-                redireccionar("/beca");
+                redireccionar("/beca/ver_becas/$idTipoBeca");
                 
             } else{
                 echo "se ha producido un error!!!!";
@@ -150,6 +142,60 @@ public function ver_beca($idBeca){
 
        
         
+    }
+    public function add_pago($idBeca){
+        $this->datos["rolesPermitidos"] = [10];
+            
+        if (!tienePrivilegios($this->datos['usuarioSesion']->idRol, $this->datos['rolesPermitidos'])) {
+            echo "No tienes privilegios!!!";
+            exit();
+           
+        }
+    
+        $datos=$_POST;
+        
+        $tipoBeca=$_POST['tipoBeca'];
+        print_r($datos);
+        if($datos['pago']==1){
+            if($this->becaModelo->addPago1($datos)){
+                redireccionar("/beca/ver_becas/$tipoBeca");
+            }else{
+                echo "error";
+            }
+       }elseif($datos['pago']==2){
+        if($this->becaModelo->addPago2($datos)){
+            redireccionar("/beca/ver_becas/$tipoBeca");
+        }else{
+            echo "error";
+        }
+       }
+    }
+
+    public function ver_becados(){
+        $this->datos["rolesPermitidos"] = [10];
+        
+        if (!tienePrivilegios($this->datos['usuarioSesion']->idRol, $this->datos['rolesPermitidos'])) {
+            echo "No tienes privilegios!!!";
+            exit();
+           
+        }
+
+        $fechaini=$_POST['fechaini'];
+        $fechafin=$_POST['fechafin'];
+        $fechaininueva=$fechaini."-01-01";
+       
+        if($fechaini==$fechafin){
+            $fechafinnueva=$fechaini."-12.31";
+        }else{
+            $fechafinnueva=$fechafin."-01-01";
+        }
+        
+        $this->datos["becados"]=$this->becaModelo->getBecados($fechaininueva,$fechafinnueva);
+     
+        $this->vista("becas/ver_becados",$this->datos);
+        
+    
+
     }
 
 
