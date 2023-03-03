@@ -7,11 +7,11 @@
       </div>
   </div> 
 
-  <!--<?php// if($datos["error"]==1): ?>
-    <div class="alert alert-danger" role="alert">
-      Se ha de rellenar un campo obligatoriamente!
-    </div> -->
-  <?php //endif?>
+  <?php if(isset($datos["error"]) && $datos["error"]=='error_1'): ?>
+    <div class="alert alert-danger mt-3 justify-content-center" role="alert">
+    Usuario o Contraseña incorrecto!!
+    </div>
+  <?php endif?>
   <form method="post">
     <div class="row d-flex justify-content-center text-center mx-0 mt-3">
       <div class="mb-3 col-5">

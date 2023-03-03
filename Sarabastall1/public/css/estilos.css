@@ -70,3 +70,19 @@ body {
       left: unset;
       right: 12px;
     }
+
+    .modal, .modal-archivo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #111111bd;
+      display: none;
+      
+  }
+
+  .modal--show {
+      display: flex;
+      pointer-events: unset;
+  }

@@ -10,7 +10,7 @@
 
   <div class="container ">
   <h5 class="text-center">BECAS </h5>
-  <input class="btn btn-primary mt-3" type="button"  data-bs-toggle="modal" href="#exampleModalToggle" role="button"  value="Buscar">
+  <input class="btn btn-primary mt-3" type="button"  data-bs-toggle="modal" href="#exampleModalToggle" role="button"  value="Buscar Alumnos Becados">
   <a class="btn btn-primary mt-3  "  href="<?php echo RUTA_URL?>/beca/add_becas">Añadir Beca</a>
     <!-- <div class="row d-flex justify-content-center text-center mx-0 mt-3">
         <div class="col-12">

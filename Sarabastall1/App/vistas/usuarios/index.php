@@ -99,7 +99,7 @@
                     for (var i = (page-1) * obj_per_page; i < datosTabla.length; i++) {
                         listing_table.innerHTML += '<li class="list-group-item mb-2"><img class="rounded" style="width:30px;" src="img/usuario.png">' + datosTabla[i].Nombre + ':' + datosTabla[i].NombreRol
                         +'<div class="mt-1 mb-1"><a class="btn btn-outline-success btn-sm" href="<?php echo RUTA_URL?>/usuario/ver_usuario/' + datosTabla[i].idPersona 
-                        + '"><i class="bi-eye"></i><a class="btn btn-outline-danger btn-sm" onclick="confirmar(event)" href="<?php echo RUTA_URL?>/usuario/borrar_usuario/' 
+                        + '"><i class="bi-eye"></i> <a class="btn btn-outline-danger btn-sm" onclick="confirmar(event)" href="<?php echo RUTA_URL?>/usuario/borrar_usuario/' 
                         + datosTabla[i].idPersona + '"><i class="bi-trash" ></i></a></div></li>' ;
 
                     }
@@ -108,7 +108,7 @@
 
                         listing_table.innerHTML += '<li class="list-group-item mb-2"><img class="rounded" style="width:30px;" src="img/usuario.png">' + datosTabla[i].Nombre + ':' + datosTabla[i].NombreRol
                         +'<div class="mt-1 mb-1"><a class="btn btn-outline-success btn-sm" href="<?php echo RUTA_URL?>/usuario/ver_usuario/' + datosTabla[i].idPersona 
-                        + '"><i class="bi-eye"></i><a class="btn btn-outline-danger btn-sm" onclick="confirmar(event)" href="<?php echo RUTA_URL?>/usuario/borrar_usuario/' 
+                        + '"><i class="bi-eye"></i> <a class="btn btn-outline-danger btn-sm" onclick="confirmar(event)" href="<?php echo RUTA_URL?>/usuario/borrar_usuario/' 
                         + datosTabla[i].idPersona + '"><i class="bi-trash" ></i></a></div></li>' ;
                         
                     }

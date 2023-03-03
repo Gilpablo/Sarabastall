@@ -115,7 +115,7 @@
         <a href="<?php echo RUTA_URL?>/centro"><li title="CENTROS_ESCOLARES" class="list-group pb-3"> <img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/colegio.png"></li></a>
         <?php endif?>
         <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20])):?>
-        <a href=""><li title="ARCHIVOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/carpeta.png"></li></a>
+        <a href="<?php echo RUTA_URL?>/archivo"><li title="ARCHIVOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/carpeta.png"></li></a>
         <?php endif?>
         <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20,30])):?>
         <a href="<?php echo RUTA_URL?>/MiCursoProfesor"> <li title="MIS CURSOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-3 mt-3" src="<?php echo RUTA_URL?>/img/certified.png"></li></a>
@@ -151,7 +151,7 @@
 <a href="<?php echo RUTA_URL?>/centro"><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/colegio.png"> Centros_Escolares</h3></a>
 <?php endif?>
 <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20])):?>
-<a href=""><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/carpeta.png"> Archivos</h3></a>
+<a href="<?php echo RUTA_URL?>/archivo"><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/carpeta.png"> Archivos</h3></a>
 <?php endif ?>
 <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [20,30])):?>
 <a href="<?php echo RUTA_URL?>/MiCursoProfesor"><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/certified.png"> Mis Cursos</h3></a>
