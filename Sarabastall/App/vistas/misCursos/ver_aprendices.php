@@ -1,6 +1,5 @@
 <?php require_once RUTA_APP.'/vistas/inc/header_inicio_sesion.php';?>
 
-
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
 

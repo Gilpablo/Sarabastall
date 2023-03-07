@@ -1,11 +1,5 @@
-<?php require_once RUTA_APP.'/vistas/inc/header_inicio_sesion.php';
-
-
-  //print_r($datos["cursos"]);
-?>
+<?php require_once RUTA_APP.'/vistas/inc/header_inicio_sesion.php';?>
   
-
-
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="<?php echo RUTA_URL?>">Home</a></li>
@@ -27,11 +21,7 @@
               <div class="card-body">
                 <h5 class="card-title"><?php echo $curso->Nombre;?></h5>
                 <p class="card-text"></p>
-
-                <!-- <a class="btn btn-outline-success btn-sm" href="<?php echo RUTA_URL?>/curso/ver_curso/<?php echo $curso->idCurso?>">
-                  <i class="bi-eye"></i>
-                </a> -->
-
+                
                 <!-- Button trigger modal -->
                 <a class="btn btn-outline-success btn-sm"  data-bs-toggle="modal" data-bs-target="#ver<?php echo $curso->idCurso; ?>">
                   <i class="bi-eye"></i>
@@ -136,7 +126,12 @@
 
                 </div>
 
+
                 <a class="btn btn-outline-warning btn-sm" href="<?php echo RUTA_URL?>/curso/add_aprendices/<?php echo $curso->idCurso?>">
+                  <i class="bi bi-people"></i>
+                </a>
+
+                <a class="btn btn-outline-dark btn-sm" href="<?php echo RUTA_URL?>/curso/certificadoCurso/<?php echo $curso->idCurso?>">
                   <i class="bi bi-people"></i>
                 </a>
 

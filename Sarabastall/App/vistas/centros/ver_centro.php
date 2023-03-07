@@ -11,7 +11,7 @@
     </ol>
   </nav>
   
-  <h5 class="text-center">Centro: <?php echo $datos['centro']->Nombre?></h5>
+  <h5 class="text-center">Centro: <?php echo $datos['centro']->NombreCentro?></h5>
 
     <div class="row p-2">
         <div class="card">
@@ -21,7 +21,7 @@
                   
                   <div class="mb-3 col-6">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $datos['centro']->Nombre?>">   
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $datos['centro']->NombreCentro?>">   
                   </div>
 
                   <div class="mb-3 col-6">

@@ -31,10 +31,11 @@
   </form>
     </form>
 
-    <li style="list-style:none;"class="nav-item dropdown">
+    <li style="list-style:none;" class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> <i class="bi bi-person-circle mr-3 "></i></a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#scrollspyHeading3">Perfil</a></li>
+    
+        <li><a class="dropdown-item" href="<?php echo RUTA_URL?>/perfil/editar_perfil/<?php echo $datos['usuarioSesion']->idPersona ?>">Perfil</a></li>
 
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="<?php echo RUTA_URL?>/login/logout">Cerrar Sesion</a></li>
@@ -58,9 +59,9 @@
         <?php  if (tienePrivilegios($datos['usuarioSesion']->idRol, [10])):?>
         <a href="<?php echo RUTA_URL?>/curso"> <li title="CURSO" class="justify-content-center.  list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/darcurso.png"></li></a>
         <a href="<?php echo RUTA_URL?>/usuario"><li title="USUARIOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/alumno.png"></li></a>
-        <a href="becas.php"><li title="BECAS" class="list-group pb-3"><img id="icono"  class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/beca.png"> </li></a>
+        <a href="<?php echo RUTA_URL?>/beca"><li title="BECAS" class="list-group pb-3"><img id="icono"  class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/beca.png"> </li></a>
         <a href="<?php echo RUTA_URL?>/prestamo"><li title="PRESTAMOS" class="list-group pb-3"><img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/prestamo.png"></li></a>
-        <a href=""><li title="MOVIMIENTOS" class="list-group pb-3"> <img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/dinero.png"></li></a>
+        <a href="<?php echo RUTA_URL?>/movimiento"><li title="MOVIMIENTOS" class="list-group pb-3"> <img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/dinero.png"></li></a>
         <a href="<?php echo RUTA_URL?>/ciudad"><li title="CIUDADES" class="list-group pb-3"> <img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/edificios.png"></li></a>
         <a href="<?php echo RUTA_URL?>/centro"><li title="CENTROS_ESCOLARES" class="list-group pb-3"> <img id="icono" class="mx-auto d-block mb-2 mt-3" src="<?php echo RUTA_URL?>/img/colegio.png"></li></a>
         <?php endif?>
@@ -90,11 +91,11 @@
 
 <a href="<?php echo RUTA_URL?>/usuario"><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/alumno.png"> Usuarios </h3></a>
 
-<a href="becas.php"><h3> <img id="icono"  class="mb-3" src="<?php echo RUTA_URL?>/img/beca.png"> Becas</h3></a></a>
+<a href="<?php echo RUTA_URL?>/beca"><h3> <img id="icono"  class="mb-3" src="<?php echo RUTA_URL?>/img/beca.png"> Becas</h3></a></a>
 
 <a href="<?php echo RUTA_URL?>/prestamo"><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/prestamo.png"> Prestamos</h3></a>
 
-<a href=""><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/dinero.png"> Movimientos</h3></a>
+<a href="<?php echo RUTA_URL?>/movimiento"><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/dinero.png"> Movimientos</h3></a>
 
 <a href="<?php echo RUTA_URL?>/ciudad"><h3> <img id="icono" class="mb-3" src="<?php echo RUTA_URL?>/img/edificios.png"> Ciudades</h3></a>
 

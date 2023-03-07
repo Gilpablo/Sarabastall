@@ -40,7 +40,7 @@ class Prestamo extends Controlador{
                 redireccionar("/prestamo/add_prestamos/1");
             }else{
                 if ($this->prestamoModelo->addPrestamo($prestamo)) {
-                    redireccionar("/prestamo/add_prestamo");
+                    redireccionar("/prestamo");
                 }else{
                     echo "error";
                 }
@@ -61,8 +61,11 @@ class Prestamo extends Controlador{
     
         if ($_SERVER["REQUEST_METHOD"]=="POST") {
             $prestamo=$_POST;
-            $idPrestamo=$idPrestamo;
-            if($this->prestamoModelo->editPrestamo($prestamo,$idPrestamo)){
+            $this->datos["prestamo"]=$this->prestamoModelo->getPrestamo($idPrestamo);
+            
+            $idMovimiento=$this->datos["prestamo"]->idMovimiento;
+           
+            if($this->prestamoModelo->editPrestamo($prestamo,$idPrestamo,$idMovimiento)){
               
                 redireccionar("/prestamo/ver_prestamo/$idPrestamo");
             } else{
@@ -86,7 +89,7 @@ class Prestamo extends Controlador{
            $prestamo=$_POST['idPrestamo'];
            
             if($this->prestamoModelo->delPrestamo($prestamo)){
-                redireccionar("/");
+                redireccionar("/prestamo");
                 
             } else{
                 echo "se ha producido un error!!!!";
@@ -101,11 +104,11 @@ class Prestamo extends Controlador{
         if ($_SERVER["REQUEST_METHOD"]=="POST") {
 
             $accion = $_POST;
-           
+           $persona=$this->prestamoModelo->getPersonaPrestamo($_POST['idPrestamo']);
 
           
 
-            if($this->prestamoModelo->addAccion($accion)){
+            if($this->prestamoModelo->addAccion($accion,$persona)){
                 redireccionar("/prestamo/ver_prestamo/".$_POST['idPrestamo']);
             } else{
                 echo "se ha producido un error!!!!";

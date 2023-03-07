@@ -85,22 +85,14 @@
 
                         </form>
 
-                        
-
                     </div>
                     
                 </div>
-                
+
             </div>
 
         </div>
-
-        <div class="">
-
-            <a href="<?php echo RUTA_URL?>/curso"  class="btn btn-success col-6">Volver</a> 
-
-        </div>
-
+        
     </div>
 
     

@@ -40,6 +40,8 @@
               <div class="row">
                 <div class="mb-3 col-6">
                   <label for="nombre_as" class="form-label">Titulo Prestamo</label>
+                  
+                  <?php //print_r($datos["prestamo"]->idMovimiento)?>
                   <input  type="text" <?php echo $estadoFormulario?> class="form-control" id="nombre_as" name="Titulo" value="<?php echo $datos['prestamo']->Titulo ?>">   
                 </div>
 

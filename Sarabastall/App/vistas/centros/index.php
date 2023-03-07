@@ -13,7 +13,7 @@
 
     <?php foreach ($datos['centrosActivos'] as $centros) {?>
       
-        <li class="list-group-item mb-2"><img class="rounded" style="width:30px;" src="img/colegio.png"> <?php echo $centros->Nombre?> 
+        <li class="list-group-item mb-2"><img class="rounded" style="width:30px;" src="img/colegio.png"> <?php echo $centros->NombreCentro?> 
             <div class="mt-1 mb-1">
                 <a class="btn btn-outline-success btn-sm" href="<?php echo RUTA_URL?>/centro/ver_centro/<?php echo $centros->idCentro?>">
                   <i class="bi-eye"></i>

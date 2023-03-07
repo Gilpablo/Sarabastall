@@ -27,7 +27,7 @@
 
         public function addCentro($datos){
             print_r($datos);
-            $this->db->query("INSERT INTO Centro(Nombre, Distancia, idCiudad)
+            $this->db->query("INSERT INTO Centro(NombreCentro, Distancia, idCiudad)
                  VALUES(:nombre, :distancia, :id_ciudad)");
             //vinculamos los valores
             $this->db->bind(':nombre',trim($datos['nombre']));
@@ -44,7 +44,7 @@
 
         public function editCentro($datos,$id_centro){
             
-            $this->db->query("UPDATE Centro SET Nombre=:nombre, Distancia=:distancia, idCiudad=:id_ciudad 
+            $this->db->query("UPDATE Centro SET NombreCentro=:nombre, Distancia=:distancia, idCiudad=:id_ciudad 
                                     WHERE idCentro=:id_centro");
             $this->db->bind(':nombre',$datos['nombre']);
             $this->db->bind(':distancia',$datos['distancia']);
